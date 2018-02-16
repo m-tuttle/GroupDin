@@ -14,10 +14,10 @@ Why it’s valuable: The app makes it easy for users to gather information on mu
 ### Persona
 Name: John Smith (and his friends)
 Demographic: Millennial
-[Persona Image](assets/images/personaImage.png)
+![Persona Image](assets/images/personaImage.png)
 
 ### Sketch of Final Product
-[Sketch](assets/images/sketch.png)
+![Sketch](assets/images/sketch.png)
 
 ### Summary of MVP 
 The minimum viable product will let the user input restaurant names and then populate the page with information associated with those restaurants.  Once the user has input all the restaurant options, the user can then click the plan button.  This will lead to a modal that will allow the user to add emails for friends and add any additional details in a message.  The modal will contain a mail to button that will allow the user to easily email the group of friends the details associated with all of the restaurant options as well as the message.  
