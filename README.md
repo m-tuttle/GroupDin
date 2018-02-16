@@ -1,4 +1,4 @@
-# Res Plannr
+# Res Plannr:bug:
 
 ### Team Members
 Jake, Seth, Mike T., Mike E.
