@@ -1,4 +1,4 @@
-# Project-1
+# Res Plannr
 
 ### Team Members
 Jake, Seth, Mike T., Mike E.
