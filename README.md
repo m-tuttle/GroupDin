@@ -1,4 +1,4 @@
-# Collabaurant-1
+# Collabaurant
 
 ### Team Members
 Jake, Seth, Mike T., Mike E.
