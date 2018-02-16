@@ -3,6 +3,3 @@
 collaborators:
 
 - Seth
-- Mike
-- Mike
-- Jake
