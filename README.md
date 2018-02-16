@@ -7,13 +7,13 @@ Jake, Seth, Mike T., Mike E.
 This web application helps a user gather information on a list of restaurants and communicate a plan to a group of friends.  
 
 ### Who, What, Why
-Who needs the app: Anyone trying to plan a group outing with friends to a restaurant.
-What our app does: Our app gathers information for user input restaurants and allows users to email a group of friends the details of multiple restaurants and plan details.  
-Why it’s valuable: The app makes it easy for users to gather information on multiple restaurants at once and easily communicate that information and other details to a group of friends.
+* Who needs the app: Anyone trying to plan a group outing with friends to a restaurant.
+* What our app does: Our app gathers information for user input restaurants and allows users to email a group of friends the details of multiple restaurants and plan details.  
+* Why it’s valuable: The app makes it easy for users to gather information on multiple restaurants at once and easily communicate that information and other details to a group of friends.
 
 ### Persona
-Name: John Smith (and his friends)
-Demographic: Millennial
+* Name: John Smith (and his friends)
+* Demographic: Millennial
 ![Persona Image](assets/images/personaImage.png)
 
 ### Sketch of Final Product
