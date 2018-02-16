@@ -1,10 +1,6 @@
 # Project-1
-TEST FOR YA'LL, can you see??!?
+test test test
 
-<<<<<<< HEAD
-## collaborators
-- Mike E
-=======
 ### Team Members
 Jake, Seth, Mike T., Mike E.
 
@@ -36,4 +32,3 @@ The minimum viable product will let the user input restaurant names and then pop
 * HTML Wireframe and CSS framework (Materialize) - Mike T.
 * Modal design and development - Seth
 * Internal logic for click handlers - Jake
->>>>>>> c88d0064b6d1016875b491b4105328542a95ddba
