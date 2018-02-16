@@ -1,5 +1,4 @@
 # Project-1
-test test test
 
 ### Team Members
 Jake, Seth, Mike T., Mike E.
