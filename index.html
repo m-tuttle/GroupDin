@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTP-8">
-    <title>Title</title>
+    <title>Res Plannr</title>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>Title</h1>
+        <h1>Res Plannr</h1>
     </header>
 
     <section>
@@ -26,8 +26,38 @@
 
     <form>
         <input type="text" placeholder="Enter Restaurant" id="text-box">
-        <input type="submit" value="Search Restaurant" id="add-restaurant">
+        <input class="btn" type="submit" value="Add Restaurant" id="add-restaurant">
     </form>
+
+
+<!--Seth's Modal Section-->
+<br>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan</a>
+
+<!-- Modal Structure -->
+<div id="planModal" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+    <form>
+        <input type="text" placeholder="Guest's Name" id="text-box">
+        <input type="text" placeholder="Guest's Email" id="text-box">
+        <input type="submit" value="Add Guest" id="add-guest">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
+
+
+
+
+<!--//////////////////////////////-->
+
+
 
 </body>
 
