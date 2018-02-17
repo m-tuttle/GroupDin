@@ -16,46 +16,53 @@
 </head>
 
 <body>
+    <!-- header for the page with a title -->
     <header>
         <h1>Res Plannr</h1>
     </header>
 
-    <section>
-        <p>Description of Web Application</p>
-    </section>
+    <!-- container for main content of the site including description, form input /w submit button, and restaurant display -->
+    <div class="container">
+        <section>
+            <p>Description of Web Application</p>
+        </section>
 
-    <form>
-        <input type="text" placeholder="Enter Restaurant" id="text-box">
-        <input class="btn" type="submit" value="Add Restaurant" id="add-restaurant">
-    </form>
+        <form>
+            <input type="text" placeholder="Enter Restaurant" id="text-box">
+            <input class="btn" type="submit" value="Add Restaurant" id="add-restaurant">
+        </form>
+
+        <div>
+            <img src="http://via.placeholder.com/250x250" alt="Placeholder">
+            <p>Description of the Restaurant: Money, Type of Food, Location, etc</p>
+        </div>
+
+        <!--Seth's Modal Section-->
+        <br>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan</a>
+    </div>
+    <!-- Modal Structure -->
+    <div id="planModal" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+            <form>
+                <input type="text" placeholder="Guest's Name" id="text-box">
+                <input type="text" placeholder="Guest's Email" id="text-box">
+                <input type="submit" value="Add Guest" id="add-guest">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
 
 
-<!--Seth's Modal Section-->
-<br>
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan</a>
-
-<!-- Modal Structure -->
-<div id="planModal" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-    <form>
-        <input type="text" placeholder="Guest's Name" id="text-box">
-        <input type="text" placeholder="Guest's Email" id="text-box">
-        <input type="submit" value="Add Guest" id="add-guest">
-    </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
 
 
 
-
-
-<!--//////////////////////////////-->
+    <!--//////////////////////////////-->
 
 
 
