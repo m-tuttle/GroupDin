@@ -3,21 +3,23 @@
 
 <head>
     <meta charset="UTP-8">
-    <title>Res Plannr</title>
+    <title>GroupDin</title>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Materialize's Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">   
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <!-- jqueryUI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
-    <script src "assets/javascript/logic.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- Materialize's Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- our CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Res Plannr</h1>
+        <h1>GroupDin</h1>
     </header>
 
     <section>
@@ -30,34 +32,38 @@
     </form>
 
 
-<!--Seth's Modal Section-->
-<br>
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan</a>
+    <!--Seth's Modal Section-->
+    <br>
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
-<!-- Modal Structure -->
-<div id="planModal" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-    <form>
-        <input type="text" placeholder="Guest's Name" id="text-box">
-        <input type="text" placeholder="Guest's Email" id="text-box">
-        <input type="submit" value="Add Guest" id="add-guest">
-    </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
-
-
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal" style="z-index: 1003;">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+            <form>
+                <input type="text" placeholder="Guest's Name" id="text-box">
+                <input type="text" placeholder="Guest's Email" id="text-box">
+                <input type="submit" value="Add Guest" id="add-guest">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
 
 
 
-<!--//////////////////////////////-->
 
 
+    <!--//////////////////////////////-->
+
+<!--Import jQuery before materialize.js (materialize website says this and to put these in the body-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- our JS -->
+<script src "assets/JavaScript/logic.js"></script>
 
 </body>
 
