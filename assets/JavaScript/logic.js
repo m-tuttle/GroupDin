@@ -84,7 +84,26 @@ $(document).ready(function () {
             }).then(function (response) {
 
                 console.log(response);
+                var newDiv = $("<div>");
+                var resImg = $("<img>");
+                var resDescription = $("<div>");
 
+                newDiv.addClass("col s4");
+
+                resImg.addClass("responsive-img");
+                resImg.attr("alt", response.name + " picture");
+                resImg.attr("src", response.featured_image);
+
+                newDiv.append(resImg);
+
+                resDescription.addClass("col s8");
+
+                resDescription.append("<h4>" + response.name + "</h4><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p>");
+
+                $("#description").append(newDiv);
+                $("#description").append(resDescription);
+
+                $("#text-box").val("");
             });
 
         });
