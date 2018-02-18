@@ -84,25 +84,34 @@ $(document).ready(function () {
             }).then(function (response) {
 
                 console.log(response);
+
+                //new restaurant variables
                 var newDiv = $("<div>");
                 var resImg = $("<img>");
                 var resDescription = $("<div>");
 
+                //adds materialize styling
                 newDiv.addClass("col s4");
 
+                //adds styling and the src attribute to the image
                 resImg.addClass("responsive-img");
                 resImg.attr("alt", response.name + " picture");
                 resImg.attr("src", response.featured_image);
 
+                //appends image to the new div
                 newDiv.append(resImg);
 
+                //adds styling for the description section
                 resDescription.addClass("col s8");
 
+                //adds restaurant information to the descrition div
                 resDescription.append("<h4>" + response.name + "</h4><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p>");
 
+                //appends both the image div and the description div to the description row
                 $("#description").append(newDiv);
                 $("#description").append(resDescription);
 
+                //clears search box
                 $("#text-box").val("");
             });
 
