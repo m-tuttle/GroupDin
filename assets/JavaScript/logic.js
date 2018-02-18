@@ -26,7 +26,7 @@ $('#add-guest-btn').on('click', function(){
     newDiv.append(removeBtn);
     $(".guest-display").append(newDiv);
     guestsArr.push(newDiv.text());
-   
+   console.log(guestsArr);
     
     $('#name-input').val('');
     $('#email-input').val('');
