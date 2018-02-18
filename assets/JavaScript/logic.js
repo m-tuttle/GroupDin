@@ -1,31 +1,46 @@
 $(document).ready(function(){
   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
   $('.modal').modal();
-  //now you can open modal from code
-  $('#modal1').modal('open');
-  //or by click on trigger
-  $('#modal1').modal('close');
 });
 
 $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
 
 });
-
+var guestCount = 0
 $('#add-guest-btn').on('click', function(){
-    var names = [];
-    var emails = [];
-    var name = $('#name-input').val();
-    var email = $('#email-input').val();
-    names.push(name);
-    emails.push(email);
-    for (i = 0; i < names.length; i++){
-        $('.guest-display').html('<div class="row"><div class="col s6">' + names[i] + '</div><div class="col s6">' + emails[i] + '</div></div>');
-    };
+    event.preventDefault();
+    localStorage.clear();
+    var guestsArr = [];
+    var name = $('#name-input').val().trim();
+    var email = $('#email-input').val().trim();
+    var divContent = $(".guest-display").html();
+    var newDiv = $("<div>");
+    newDiv.addClass("row");
+    newDiv.attr("id", "guest-" + guestCount);
+    newDiv.append(name +'\xa0\xa0\xa0\xa0');
+    newDiv.append(email + '\xa0\xa0\xa0\xa0');
+    var removeBtn = $("<button>").attr("data-guest", guestCount);
+    removeBtn.attr("class", "remove");
+    removeBtn.text('Remove');
+    newDiv.append(removeBtn);
+    $(".guest-display").append(newDiv);
+    guestsArr.push(newDiv.text());
+   
+    
     $('#name-input').val('');
     $('#email-input').val('');
-    console.log(names)
-    console.log(emails)
-
-
+    guestCount++;
+     var savedGuest = JSON.parse(guestsArr);
+    for (var i = 0; i < savedGuest.length; i++) {
+        localStorage.setItem('savedGuest',savedGuest[i]);
+    };
 })
+    
+    $(document.body).on('click', '.remove', function(){
+        var guestNumber = $(this).attr("data-guest");
+        $("#guest-"+ guestNumber).remove();
+       
+    });
+    $('.guest-display').html(localStorage.getItem('savedGuest'));
+
