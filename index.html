@@ -51,7 +51,7 @@
                 <img class="responsive-img" src="http://via.placeholder.com/250x150" alt="Placeholder">
             </div>
             <div class="col s8">
-                <p>Description of the Restaurant: Money, Type of Food, Location, etc</p>
+                <p>Description of the Restaurant: Type of Food, Price, Address, etc</p>
             </div>
         </div>
 
@@ -62,17 +62,28 @@
     </div>
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+        <div class="modal-content container">
+            <h4 class='header fixed'>Add Guest Information</h4>
+            <p>Enter the names and emails of guests to invite to your dinner</p>
             <form>
-                <input type="text" placeholder="Guest's Name" id="text-box">
-                <input type="text" placeholder="Guest's Email" id="text-box">
-                <input type="submit" value="Add Guest" id="add-guest">
+                <div class="row">
+                    <div class="col s6">
+                        <label for="name-input">Name</label>
+                        <input type="text" placeholder="John Smith" id="name-input">
+                    </div>
+                    <div class="col s6">
+                        <label for="email-input">Email</label>
+                        <input type="text" placeholder="JSmith@example.com" id="email-input">
+                    </div>
+                <input class ='btn' type="submit" value="Add Guest" id="add-guest-btn">
+                </div>
             </form>
+            <div class='guest-display'>
+
+            </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
         </div>
     </div>
 
@@ -80,7 +91,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <!-- our JS -->
-    <script type="text/javascript" src "assets/JavaScript/logic.js"></script>
+    <script type="text/javascript" src="assets/JavaScript/logic.js"></script>
 
 </body>
 
