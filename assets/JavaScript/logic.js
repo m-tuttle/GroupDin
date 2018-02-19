@@ -88,29 +88,43 @@ $(document).ready(function () {
 
                 //new restaurant variables
                 var newDiv = $("<div>");
+                var imgDiv = $("<div>");
                 var resImg = $("<img>");
                 var resDescription = $("<div>");
+                var removeRestaurant = $("<div>");
+                var removeButton = $("<button>");
 
                 //adds materialize styling
-                newDiv.addClass("col s4");
+                imgDiv.addClass("col s4");
 
                 //adds styling and the src attribute to the image
                 resImg.addClass("responsive-img");
                 resImg.attr("alt", response.name + " picture");
-                resImg.attr("src", response.featured_image);
+                resImg.attr("src", response.thumb);
 
                 //appends image to the new div
-                newDiv.append(resImg);
+                imgDiv.append(resImg);
+
+                newDiv.append(imgDiv);
 
                 //adds styling for the description section
-                resDescription.addClass("col s8");
+                resDescription.addClass("col s6");
 
                 //adds restaurant information to the descrition div
                 resDescription.append("<h4>" + response.name + "</h4><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p>");
 
-                //appends both the image div and the description div to the description row
+                newDiv.append(resDescription);
+
+                //adds remove button
+                removeRestaurant.addClass("col s2");
+                removeButton.addClass("btn remove");
+                removeButton.text("Remove Restaurant");
+                removeRestaurant.append(removeButton);
+
+                newDiv.append(removeRestaurant);
+
+                //appends the new restaurant to the description row
                 $("#description").append(newDiv);
-                $("#description").append(resDescription);
 
                 //clears search box
                 $("#text-box").val("");
@@ -118,5 +132,10 @@ $(document).ready(function () {
 
         });
     });
+
+    //removes div of associated restaurant when remove button is clicked
+    $(document).on("click", ".remove", function () {
+        $(this).parent().parent().remove();
+    })
 
 });
