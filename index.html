@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>GroupDin</title>
+    <title>GroupDīn</title>
 
     <!-- Materialize's Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -15,71 +15,103 @@
 
 <body>
     <!-- header for the page with a title -->
-    <header class="center-align">
+    <header class="page-header center-align">
         <h1>GroupDīn</h1>
     </header>
 
     <!-- container for main content of the site including description, form input /w submit button, and restaurant display -->
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <p>Description of Web Application</p>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p>Description of Web Application</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <form class="col s12">
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter Restaurant" id="text-box" required class="validate">
+                    </div>
+
+                    <button class="btn" type="submit" id="add-restaurant">Add Restaurant
+                        <i class="material-icons right">restaurant_menu</i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- restaurant picture and information gets populated here -->
+            <div class="row" id="description">
+            </div>
+
+            <!--Seth's Modal Section-->
+            <br>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan
+                <i class="material-icons right">assignment</i>
+            </a>
+
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content container">
+                <h4>Ready to share these restaurants?</h4>
+                <p>Enter the names and emails of the guests you want to invite</p>
+                <form>
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="input-field">
+                                <label for="name-input">Name</label>
+                                <input type="text" placeholder="John Smith" id="name-input" required class="validate">
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="input-field">
+                                <label for="email-input">Email</label>
+                                <input type="text" placeholder="JohnSmith@example.com" id="email-input" required class="validate">
+                            </div>
+                        </div>
+                        <button class="btn" type="submit" id="add-guest-btn">Add Guest
+                            <i class="material-icons right">add_box</i>
+                        </button>
+                    </div>
+                </form>
+                <div class='guest-display'>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Send Emails
+                    <i class="material-icons right">send</i>
+                </a>
             </div>
         </div>
-
-        <div class="row">
-            <form class="col s12">
-                <div class="input-field">
-                    <input type="text" placeholder="Enter Restaurant" id="text-box" required class="validate">
+    </main>
+    <br>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Powered by zomato</h5>
                 </div>
-
-                <button class="btn" type="submit" id="add-restaurant">Add Restaurant
-                    <i class="material-icons right">restaurant_menu</i>
-                </button>
-            </form>
-        </div>
-
-        <!-- restaurant picture and information gets populated here -->
-        <div class="row" id="description">
-        </div>
-
-        <!--Seth's Modal Section-->
-        <br>
-        <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan</a>
-
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content container">
-            <h4>Ready to share these restaurants?</h4>
-            <p>Enter the names and emails of the guests you want to invite</p>
-            <form>
-                <div class="row">
-                    <div class="col s6">
-                        <div class="input-field">
-                            <label for="name-input">Name</label>
-                            <input type="text" placeholder="John Smith" id="name-input" required class="validate">
-                        </div>
-                    </div>
-                    <div class="col s6">
-                        <div class="input-field">
-                            <label for="email-input">Email</label>
-                            <input type="text" placeholder="JohnSmith@example.com" id="email-input" required class="validate">
-                        </div>
-                    </div>
-                    <input class='btn' type="submit" value="Add Guest" id="add-guest-btn">
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="https://www.zomato.com">zomato Homepage</a>
+                        </li>
+                    </ul>
                 </div>
-            </form>
-            <div class='guest-display'>
-
             </div>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Send Emails</a>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 Copyright GroupDīn
+            </div>
         </div>
-    </div>
+    </footer>
 
     <!--Import jQuery before materialize.js (materialize website says this and to put these in the body)-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

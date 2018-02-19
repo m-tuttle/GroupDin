@@ -22,10 +22,10 @@ $(document).ready(function () {
         newDiv.append(name + '\xa0\xa0\xa0\xa0');
         newDiv.append(email + '\xa0\xa0\xa0\xa0');
         var removeBtn = $("<button>").attr("data-guest", guestCount);
-        removeBtn.attr("class", "remove");
-        removeBtn.text('Remove');
+        removeBtn.attr("class", "remove btn");
+        removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
-        $(".guest-display").append(newDiv);
+        $(".guest-display").prepend(newDiv);
         guestsArr.push(newDiv.text());
 
 
@@ -38,7 +38,7 @@ $(document).ready(function () {
         };
     })
 
-    $(document.body).on('click', '.remove', function () {
+    $(document).on('click', '.remove', function () {
         var guestNumber = $(this).attr("data-guest");
         $("#guest-" + guestNumber).remove();
 
@@ -108,7 +108,7 @@ $(document).ready(function () {
                 newDiv.append(imgDiv);
 
                 //adds styling for the description section
-                resDescription.addClass("col s6");
+                resDescription.addClass("col s5");
 
                 //adds restaurant information to the descrition div
                 resDescription.append("<h5><a href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p><br>");
@@ -116,15 +116,15 @@ $(document).ready(function () {
                 newDiv.append(resDescription);
 
                 //adds remove button
-                removeRestaurant.addClass("col s2");
+                removeRestaurant.addClass("col s3");
                 removeButton.addClass("btn remove");
-                removeButton.text("Remove Restaurant");
+                removeButton.html('Remove<i class="material-icons right">delete</i>')
                 removeRestaurant.append(removeButton);
 
                 newDiv.append(removeRestaurant);
 
                 //appends the new restaurant to the description row
-                $("#description").append(newDiv);
+                $("#description").prepend(newDiv);
 
                 //clears search box
                 $("#text-box").val("");
