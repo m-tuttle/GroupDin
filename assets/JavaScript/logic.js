@@ -94,6 +94,8 @@ $(document).ready(function () {
                 var removeRestaurant = $("<div>");
                 var removeButton = $("<button>");
 
+                newDiv.addClass("restaurant-container");
+
                 //adds materialize styling
                 imgDiv.addClass("col s4");
 
@@ -135,7 +137,7 @@ $(document).ready(function () {
 
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
-        $(this).parent().parent().remove();
+        $(this).closest(".restaurant-container").remove();
     })
 
 });
