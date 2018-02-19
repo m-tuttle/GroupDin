@@ -89,7 +89,7 @@ $(document).ready(function () {
                 console.log(response);
 
                 //new restaurant variables
-                var rowDiv = $("<div class ='row'>")
+                var rowDiv = $("<div id='restaurant' class ='row'>")
                 var newDiv = $("<div>");
                 var imgDiv = $("<div>");
                 var resImg = $("<img>");
@@ -116,7 +116,7 @@ $(document).ready(function () {
                 resDescription.addClass("col s5");
 
                 //adds restaurant information to the descrition div
-                resDescription.append("<h5><a href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p><strong>Location:</strong> " + response.location.address + "</p><p><strong>Cuisine:</strong> " + response.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.user_rating.rating_text + "</p><br>");
+                resDescription.append("<h5><a target='_blank' href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p><strong>Location:</strong> " + response.location.address + "</p><p><strong>Cuisine:</strong> " + response.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.user_rating.rating_text + "</p><br>");
 
                 newDiv.append(resDescription);
 
@@ -146,7 +146,7 @@ $(document).ready(function () {
     });
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
-        $(this).closest(".restaurant-container").remove();
+        $(this).closest('#restaurant').remove();
     })
 
 });
