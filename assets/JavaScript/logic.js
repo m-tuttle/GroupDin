@@ -142,4 +142,5 @@ $(document).ready(function () {
         $(this).closest(".restaurant-container").remove();
     })
 
+    
 });
