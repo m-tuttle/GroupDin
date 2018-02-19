@@ -8,6 +8,7 @@ $(document).ready(function () {
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
 
     });
+    /////////This section needs a lot of work and cleaning up///////////////////
     var guestCount = 0
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
@@ -44,6 +45,7 @@ $(document).ready(function () {
 
     });
     $('.guest-display').html(localStorage.getItem('savedGuest'));
+/////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
     $("#add-restaurant").on("click", function (event) {
@@ -102,7 +104,7 @@ $(document).ready(function () {
 
                 //adds styling and the src attribute to the image
                 resImg.addClass("responsive-img");
-                resImg.attr("alt", response.name + " picture");
+                resImg.attr("alt", "Image of " + response.name);
                 resImg.attr("src", response.thumb);
 
                 //appends image to the new div
@@ -125,7 +127,8 @@ $(document).ready(function () {
                 removeRestaurant.append(removeButton);
 
                 newDiv.append(removeRestaurant);
-                rowDiv.append(newDiv)
+                rowDiv.append(newDiv);
+                rowDiv.prepend("<hr><br>");
 
                 //appends the new restaurant to the description row
                 $("#description").prepend(rowDiv);
@@ -136,7 +139,11 @@ $(document).ready(function () {
 
         });
     });
-
+    //adds make plan button under first displayed restaurant
+    $("#add-restaurant").one("click", function (event) {
+    
+        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+    });
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
         $(this).closest(".restaurant-container").remove();

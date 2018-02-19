@@ -20,7 +20,7 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">GDīn</a>
                 <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
-                    <ul class="right">
+                <ul class="right">
                     <li>
                         <a class="waves-effect waves-light modal-trigger" href="#modal2">Description
                         </a>
@@ -40,10 +40,10 @@
             <div class="row">
                 <div class="col s12">
                     <div class="center-align">
-                    <h5>Make planning dinner easier on yourself!</h5>
-                </div>
-                    <p>Pick your favorite restaurants or places you've been dying to try and add them below. When you're ready to send out your list, click on the "Make the
-                        Plan" button.</p>
+                        <h5>Make planning dinner easier on yourself!</h5>
+                    </div>
+                    <p>Pick your favorite restaurants or places you've been dying to try and add them below. When you're ready
+                        to send out your list, click on the "Make the Plan" button.</p>
                 </div>
             </div>
 
@@ -53,77 +53,94 @@
                         <input type="text" placeholder="Enter Restaurant" id="text-box" required class="validate">
                     </div>
 
-                    <button class="btn" type="submit" id="add-restaurant">Add Restaurant
+                    <button class="btn col s3" type="submit" id="add-restaurant">Add Restaurant
                         <i class="material-icons right">restaurant_menu</i>
                     </button>
+                    <a class="col offset-s6 s3 waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan
+                        <i class="material-icons right">assignment</i>
+                    </a>
                 </form>
             </div>
 
             <!-- restaurant picture and information gets populated here -->
             <div class="row" id="description">
             </div>
-
-            <!--Seth's Modal Section-->
             <br>
             <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan
-                <i class="material-icons right">assignment</i>
-            </a>
-
-        </div>
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content container">
-                <h4>Ready to share these restaurants?</h4>
-                <p>Enter the names and emails of the guests you want to invite</p>
-                <form>
-                    <div class="row">
-                        <div class="col s6">
-                            <div class="input-field">
-                                <label for="name-input">Name</label>
-                                <input type="text" placeholder="John Smith" id="name-input" required class="validate">
-                            </div>
-                        </div>
-                        <div class="col s6">
-                            <div class="input-field">
-                                <label for="email-input">Email</label>
-                                <input type="text" placeholder="JohnSmith@example.com" id="email-input" required class="validate">
-                            </div>
-                        </div>
-                        <button class="btn" type="submit" id="add-guest-btn">Add Guest
-                            <i class="material-icons right">add_box</i>
-                        </button>
-                    </div>
-                </form>
-                <div class='guest-display'>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Send Emails
-                    <i class="material-icons right">send</i>
-                </a>
+            <div class="make-plan-btn">
             </div>
         </div>
-        <div id="modal2" class="modal">
-            <div class="modal-content container">
-                <h3>GroupDīn Description</h3>
-                <div class="row">
-                    <p>GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
-                        a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again.
-                        Every group's got one. It allows those individuals to create a list of restaurants with descriptions
-                        and send out the options seemlessly to the rest of the group. Try it out! Pick your favorite restaurants or places you've been dying to try and add them below. When you're ready to send out your list, click on the "Make the
-                        Plan" button.</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Got it!
-                </a>
-            </div>
-        </div>
+        <!-- end of main page body content container -->
     </main>
-    <br>
+    <!-- make the plan modal begins here-->
+    <div id="modal1" class="modal">
+        <div class="modal-content container">
+            <h4>Ready to share these restaurants?</h4>
+            <p>Enter the names and emails of the guests you want to invite</p>
+            <form>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field">
+                            <label for="name-input">Name</label>
+                            <input type="text" placeholder="John Smith" id="name-input" required class="validate">
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="input-field">
+                            <label for="email-input">Email</label>
+                            <input type="text" placeholder="JohnSmith@example.com" id="email-input" required class="validate">
+                        </div>
+                    </div>
+                    <button class="btn" type="submit" id="add-guest-btn">Add Guest
+                        <i class="material-icons right">add_box</i>
+                    </button>
+                </div>
+                <!-- added guests diplay here -->
+                <div class='guest-display'>
+                </div>
+                <!-- ///////// -->
+                <br>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix2">Message</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Send Emails
+                <i class="material-icons right">send</i>
+            </a>
+        </div>
+    </div>
+    <!-- end of make the plan modal -->
+    <!-- description modal begins here -->
+    <div id="modal2" class="modal">
+        <div class="modal-content container">
+            <h3>GroupDīn Description</h3>
+            <div class="row">
+                <p>GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
+                    a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again. Every
+                    group's got one. It allows those individuals to create a list of restaurants with descriptions and send
+                    out the options seemlessly to the rest of the group. Try it out! Pick your favorite restaurants or places
+                    you've been dying to try and add them below. When you're ready to send out your list, click on the "Make
+                    the Plan" button.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Got it!
+            </a>
+        </div>
+    </div>
+    <!-- end of description modal -->
+
+    <!-- footer begins here -->
     <footer class="page-footer">
         <div class="container">
             <div class="row">
@@ -131,7 +148,7 @@
                     <h5 class="white-text">Powered by zomato</h5>
                 </div>
                 <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Links</h5>
+                    <!-- <h5 class="white-text">Links</h5> -->
                     <ul>
                         <li>
                             <a class="grey-text text-lighten-3" href="https://www.zomato.com">zomato Homepage</a>
