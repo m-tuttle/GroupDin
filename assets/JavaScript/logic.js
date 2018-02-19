@@ -111,7 +111,7 @@ $(document).ready(function () {
                 resDescription.addClass("col s6");
 
                 //adds restaurant information to the descrition div
-                resDescription.append("<h4>" + response.name + "</h4><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p>");
+                resDescription.append("<h5><a href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p>Location: " + response.location.address + "</p><p> Cuisine: " + response.cuisines + "</p><p> Average cost per person: $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> User rating: " + response.user_rating.rating_text + "</p><br>");
 
                 newDiv.append(resDescription);
 
