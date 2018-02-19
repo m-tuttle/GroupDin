@@ -15,7 +15,20 @@
 
 <body>
     <!-- header for the page with a title -->
-    <header class="page-header center-align">
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">GDīn</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a class="waves-effect waves-light modal-trigger" href="#modal2">Description
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <header class="center-align">
         <h1>GroupDīn</h1>
     </header>
 
@@ -25,7 +38,12 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <p>Description of Web Application</p>
+                    <div class="center-align">
+                    <h5>Make coordinating dinner plans easier on yourself!</h5>
+                </div>
+                    <p>Pick any restaurants you
+                        can think of and enter them below. When you're ready to send out your list click on the "Make the
+                        Plan" button.</p>
                 </div>
             </div>
 
@@ -85,6 +103,23 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Send Emails
                     <i class="material-icons right">send</i>
+                </a>
+            </div>
+        </div>
+        <div id="modal2" class="modal">
+            <div class="modal-content container">
+                <h3>GroupDīn Description</h3>
+                <div class="row">
+                    <p>GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
+                        a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again.
+                        Every group's got one. It allows those individuals to create a list of restaurants with descriptions
+                        and send out the options seemlessly to the rest of the group. Try it out! Pick any restaurants you
+                        can think of and enter them below. When you're ready to send out your list click on the "Make the
+                        Plan" button.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Got it!
                 </a>
             </div>
         </div>

@@ -4,3 +4,11 @@
 .container {
     width: 90%;
 }
+p{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+h1{
+    margin-bottom: 0;
+}
