@@ -1,9 +1,10 @@
 $(document).ready(function () {
+   var restaurant = $('#restaurant');
+    //progress bar hide
+    $('.preloader-wrapper').hide();
     //modal handler
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-
-
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
 
@@ -27,6 +28,7 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
+        $('.res-display').append(restaurant);
         guestsArr.push(newDiv.text());
 
 
@@ -52,7 +54,6 @@ $(document).ready(function () {
 
         //prevents page reload
         event.preventDefault();
-
         //search variables
         var restaurant = $("#text-box").val().trim();
         var result = restaurant.replace(" ", "%20");
@@ -148,6 +149,14 @@ $(document).ready(function () {
     $(document).on("click", ".remove", function () {
         $(this).closest('#restaurant').remove();
     })
+    // progress bar
+    $(document).ajaxStart(function() {
+        // show loader on start
+        $(".preloader-wrapper").show();
+        }).ajaxSuccess(function() {
+        // hide loader on success
+        $(".preloader-wrapper").hide();
+    });
 
 
 });
