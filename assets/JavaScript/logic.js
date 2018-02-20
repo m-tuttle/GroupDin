@@ -55,6 +55,7 @@ $(document).ready(function () {
         //prevents page reload
         event.preventDefault();
         //search variables
+        //var location = $("#location").val().trim();
         var restaurant = $("#text-box").val().trim();
         var result = restaurant.replace(" ", "%20");
         var queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=chicago&entity_type=city&count=1&q=" + result;
@@ -88,8 +89,8 @@ $(document).ready(function () {
 
             //adds styling and the src attribute to the image
             resImg.addClass("responsive-img");
-            resImg.attr("alt", "Image of " + response.name);
-            resImg.attr("src", response.thumb);
+            resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
+            resImg.attr("src", response.restaurants[0].restaurant.thumb);
 
             //appends image to the new div
             imgDiv.append(resImg);
@@ -135,26 +136,29 @@ $(document).ready(function () {
         $(this).closest('#restaurant').remove();
     });
 
-    $(document).on("click", "#plan-btn", function () {
+    // $(document).on("click", "#plan-btn", function () {
 
-        var poll = {
-            "title": "This is a test poll.",
-            "options": [
-                "Option #1",
-                "Option #2"
-            ],
-            "multi": true
-        };
-        $.ajax({
-            url: "https://strawpoll.me/api/v2/polls",
-            method: "POST",
-            data: poll,
-            contentType: "application/json"
+    //     var poll = {
+    //         "title": "This is a test poll.",
+    //         "options": [
+    //             "Option #1",
+    //             "Option #2"
+    //         ],
+    //         "multi": true
+    //     };
+    //     $.ajax({
+    //         header: {
+    //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
+    //             Vary: "Origin",
+    //             contentType: "application/json"
+    //         },
+    //         method: "POST",
+    //         data: poll
 
-        }).then(function (response) {
-            console.log(response);
-        })
-    });
+    //     }).then(function (response) {
+    //         console.log(response);
+    //     })
+    // });
 
 
     // progress bar
