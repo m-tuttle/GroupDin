@@ -1,3 +1,10 @@
+// variable to store the emails of the guests entered by the user
+var guestsArr = [];
+// function referenced in the HTML of the send email link, which runs the mailto in a new window
+function sendMail () {
+    window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
+}
+
 $(document).ready(function () {
     var restaurant = $('#restaurant');
     //progress bar hide
@@ -10,11 +17,9 @@ $(document).ready(function () {
 
     });
     /////////This section needs a lot of work and cleaning up///////////////////
-    var guestCount = 0
+    var guestCount = 0;
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
-        localStorage.clear();
-        var guestsArr = [];
         var name = $('#name-input').val().trim();
         var email = $('#email-input').val().trim();
         var divContent = $(".guest-display").html();
@@ -29,16 +34,10 @@ $(document).ready(function () {
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
         $('.res-display').append(restaurant);
-        guestsArr.push(newDiv.text());
-
-
+        guestsArr.push(email);
         $('#name-input').val('');
         $('#email-input').val('');
         guestCount++;
-        var savedGuest = JSON.parse(guestsArr);
-        for (var i = 0; i < savedGuest.length; i++) {
-            localStorage.setItem('savedGuest', savedGuest[i]);
-        };
     })
 
     $(document).on('click', '.remove', function () {
