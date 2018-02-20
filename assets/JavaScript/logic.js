@@ -23,7 +23,7 @@ $(document).ready(function () {
         newDiv.append(name + '\xa0\xa0\xa0\xa0');
         newDiv.append(email + '\xa0\xa0\xa0\xa0');
         var removeBtn = $("<button>").attr("data-guest", guestCount);
-        removeBtn.attr("class", "remove btn");
+        removeBtn.attr("class", "remove btn red lighten-1");
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
@@ -122,7 +122,7 @@ $(document).ready(function () {
 
                 //adds remove button
                 removeRestaurant.addClass("col s3");
-                removeButton.addClass("btn remove");
+                removeButton.addClass("btn remove red lighten-1");
                 removeButton.html('Remove<i class="material-icons right">delete</i>')
                 removeRestaurant.append(removeButton);
 
@@ -142,7 +142,7 @@ $(document).ready(function () {
     //adds make plan button under first displayed restaurant
     $("#add-restaurant").one("click", function (event) {
     
-        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
     });
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
