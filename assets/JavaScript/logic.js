@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   var restaurant = $('#restaurant');
+    var restaurant = $('#restaurant');
     //progress bar hide
     $('.preloader-wrapper').hide();
     //modal handler
@@ -72,74 +72,59 @@ $(document).ready(function () {
 
             console.log(response);
 
-            //variables to call specific restaurant by ID
-            var businessID = response.restaurants[0].restaurant.R.res_id;
-            var businessURL = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + businessID;
+            //new restaurant variables
+            var rowDiv = $("<div id='restaurant' class ='row'>")
+            var newDiv = $("<div>");
+            var imgDiv = $("<div>");
+            var resImg = $("<img>");
+            var resDescription = $("<div>");
+            var removeRestaurant = $("<div>");
+            var removeButton = $("<button>");
 
-            console.log(businessID);
+            newDiv.addClass("restaurant-container");
 
-            //ajax call to zomato API with restaurant ID
-            $.ajax({
-                url: businessURL,
-                headers: {
-                    "user-key": "f69c8b568483aa852e551427f51f2186"
-                },
-                method: "GET"
-            }).then(function (response) {
+            //adds materialize styling
+            imgDiv.addClass("col s4");
 
-                console.log(response);
+            //adds styling and the src attribute to the image
+            resImg.addClass("responsive-img");
+            resImg.attr("alt", "Image of " + response.name);
+            resImg.attr("src", response.thumb);
 
-                //new restaurant variables
-                var rowDiv = $("<div id='restaurant' class ='row'>")
-                var newDiv = $("<div>");
-                var imgDiv = $("<div>");
-                var resImg = $("<img>");
-                var resDescription = $("<div>");
-                var removeRestaurant = $("<div>");
-                var removeButton = $("<button>");
+            //appends image to the new div
+            imgDiv.append(resImg);
 
-                newDiv.addClass("restaurant-container");
+            newDiv.append(imgDiv);
 
-                //adds materialize styling
-                imgDiv.addClass("col s4");
+            //adds styling for the description section
+            resDescription.addClass("col s5");
 
-                //adds styling and the src attribute to the image
-                resImg.addClass("responsive-img");
-                resImg.attr("alt", "Image of " + response.name);
-                resImg.attr("src", response.thumb);
+            //adds restaurant information to the descrition div
+            resDescription.append("<h5><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h5><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
 
-                //appends image to the new div
-                imgDiv.append(resImg);
+            console.log(response.restaurants[0].restaurant.url);
 
-                newDiv.append(imgDiv);
+            newDiv.append(resDescription);
 
-                //adds styling for the description section
-                resDescription.addClass("col s5");
+            //adds remove button
+            removeRestaurant.addClass("col s3");
+            removeButton.addClass("btn remove red lighten-1");
+            removeButton.html('Remove<i class="material-icons right">delete</i>')
+            removeRestaurant.append(removeButton);
 
-                //adds restaurant information to the descrition div
-                resDescription.append("<h5><a target='_blank' href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p><strong>Location:</strong> " + response.location.address + "</p><p><strong>Cuisine:</strong> " + response.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.user_rating.rating_text + "</p><br>");
+            newDiv.append(removeRestaurant);
+            rowDiv.append(newDiv);
+            rowDiv.prepend("<hr><br>");
 
-                newDiv.append(resDescription);
+            //appends the new restaurant to the description row
+            $("#description").prepend(rowDiv);
 
-                //adds remove button
-                removeRestaurant.addClass("col s3");
-                removeButton.addClass("btn remove red lighten-1");
-                removeButton.html('Remove<i class="material-icons right">delete</i>')
-                removeRestaurant.append(removeButton);
-
-                newDiv.append(removeRestaurant);
-                rowDiv.append(newDiv);
-                rowDiv.prepend("<hr><br>");
-
-                //appends the new restaurant to the description row
-                $("#description").prepend(rowDiv);
-
-                //clears search box
-                $("#text-box").val("");
-            });
-
+            //clears search box
+            $("#text-box").val("");
         });
+
     });
+
     //adds make plan button under first displayed restaurant
     $("#add-restaurant").on("click", function (event) {
 
@@ -148,15 +133,39 @@ $(document).ready(function () {
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
         $(this).closest('#restaurant').remove();
-    })
+    });
+
+    $(document).on("click", "#plan-btn", function () {
+
+        var poll = {
+            "title": "This is a test poll.",
+            "options": [
+                "Option #1",
+                "Option #2"
+            ],
+            "multi": true
+        };
+        $.ajax({
+            url: "https://strawpoll.me/api/v2/polls",
+            method: "POST",
+            data: poll,
+            contentType: "application/json"
+
+        }).then(function (response) {
+            console.log(response);
+        })
+    });
+
+
     // progress bar
-    $(document).ajaxStart(function() {
+    $(document).ajaxStart(function () {
         // show loader on start
         $(".preloader-wrapper").show();
-        }).ajaxSuccess(function() {
+    }).ajaxSuccess(function () {
         // hide loader on success
         $(".preloader-wrapper").hide();
     });
+
 
 
 });
