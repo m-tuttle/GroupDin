@@ -55,10 +55,11 @@ $(document).ready(function () {
         //prevents page reload
         event.preventDefault();
         //search variables
-        //var location = $("#location").val().trim();
+        var location = $("#location").val().trim();
         var restaurant = $("#text-box").val().trim();
         var result = restaurant.replace(" ", "%20");
-        var queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=chicago&entity_type=city&count=1&q=" + result;
+        var locationFix = location.replace(" ", "%20");
+        var queryURL = "https://developers.zomato.com/api/v2.1/cities?q=" + locationFix;
 
         console.log(queryURL);
 
@@ -69,107 +70,118 @@ $(document).ready(function () {
                 "user-key": "f69c8b568483aa852e551427f51f2186"
             },
             method: "GET"
-        }).then(function (response) {
+        }).then(function (response1) {
 
-            console.log(response);
+            var cityID = response1.location_suggestions[0].id;
+            var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1";
 
-            //new restaurant variables
-            var rowDiv = $("<div id='restaurant' class ='row'>")
-            var newDiv = $("<div>");
-            var imgDiv = $("<div>");
-            var resImg = $("<img>");
-            var resDescription = $("<div>");
-            var removeRestaurant = $("<div>");
-            var removeButton = $("<button>");
+            $.ajax({
+                url: restaurantURL,
+                headers: {
+                    "user-key": "f69c8b568483aa852e551427f51f2186"
+                },
+                method: "GET"
+            }).then(function (response) {
 
-            newDiv.addClass("restaurant-container");
+                console.log(response);
 
-            //adds materialize styling
-            imgDiv.addClass("col s4");
+                //new restaurant variables
+                var rowDiv = $("<div id='restaurant' class ='row'>")
+                var newDiv = $("<div>");
+                var imgDiv = $("<div>");
+                var resImg = $("<img>");
+                var resDescription = $("<div>");
+                var removeRestaurant = $("<div>");
+                var removeButton = $("<button>");
 
-            //adds styling and the src attribute to the image
-            resImg.addClass("responsive-img");
-            resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
-            resImg.attr("src", response.restaurants[0].restaurant.thumb);
+                newDiv.addClass("restaurant-container");
 
-            //appends image to the new div
-            imgDiv.append(resImg);
+                //adds materialize styling
+                imgDiv.addClass("col s4");
 
-            newDiv.append(imgDiv);
+                //adds styling and the src attribute to the image
+                resImg.addClass("responsive-img");
+                resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
+                resImg.attr("src", response.restaurants[0].restaurant.thumb);
 
-            //adds styling for the description section
-            resDescription.addClass("col s5");
+                //appends image to the new div
+                imgDiv.append(resImg);
 
-            //adds restaurant information to the descrition div
-            resDescription.append("<h5><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h5><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
+                newDiv.append(imgDiv);
 
-            console.log(response.restaurants[0].restaurant.url);
+                //adds styling for the description section
+                resDescription.addClass("col s5");
 
-            newDiv.append(resDescription);
+                //adds restaurant information to the descrition div
+                resDescription.append("<h5><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h5><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
 
-            //adds remove button
-            removeRestaurant.addClass("col s3");
-            removeButton.addClass("btn remove red lighten-1");
-            removeButton.html('Remove<i class="material-icons right">delete</i>')
-            removeRestaurant.append(removeButton);
+                console.log(response);
 
-            newDiv.append(removeRestaurant);
-            rowDiv.append(newDiv);
-            rowDiv.prepend("<hr><br>");
+                newDiv.append(resDescription);
 
-            //appends the new restaurant to the description row
-            $("#description").prepend(rowDiv);
+                //adds remove button
+                removeRestaurant.addClass("col s3");
+                removeButton.addClass("btn remove red lighten-1");
+                removeButton.html('Remove<i class="material-icons right">delete</i>')
+                removeRestaurant.append(removeButton);
 
-            //clears search box
-            $("#text-box").val("");
+                newDiv.append(removeRestaurant);
+                rowDiv.append(newDiv);
+                rowDiv.prepend("<hr><br>");
+
+                //appends the new restaurant to the description row
+                $("#description").prepend(rowDiv);
+
+                //clears search box
+                $("#text-box").val("");
+            });
+
         });
 
+        //adds make plan button under first displayed restaurant
+        $("#add-restaurant").on("click", function (event) {
+
+            $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+        });
+        //removes div of associated restaurant when remove button is clicked
+        $(document).on("click", ".remove", function () {
+            $(this).closest('#restaurant').remove();
+        });
+
+        // $(document).on("click", "#plan-btn", function () {
+
+        //     var poll = {
+        //         "title": "This is a test poll.",
+        //         "options": [
+        //             "Option #1",
+        //             "Option #2"
+        //         ],
+        //         "multi": true
+        //     };
+        //     $.ajax({
+        //         header: {
+        //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
+        //             Vary: "Origin",
+        //             contentType: "application/json"
+        //         },
+        //         method: "POST",
+        //         data: poll
+
+        //     }).then(function (response) {
+        //         console.log(response);
+        //     })
+        // });
+
+
+        // progress bar
+        $(document).ajaxStart(function () {
+            // show loader on start
+            $(".preloader-wrapper").show();
+        }).ajaxSuccess(function () {
+            // hide loader on success
+            $(".preloader-wrapper").hide();
+        });
+
+
     });
-
-    //adds make plan button under first displayed restaurant
-    $("#add-restaurant").on("click", function (event) {
-
-        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
-    });
-    //removes div of associated restaurant when remove button is clicked
-    $(document).on("click", ".remove", function () {
-        $(this).closest('#restaurant').remove();
-    });
-
-    // $(document).on("click", "#plan-btn", function () {
-
-    //     var poll = {
-    //         "title": "This is a test poll.",
-    //         "options": [
-    //             "Option #1",
-    //             "Option #2"
-    //         ],
-    //         "multi": true
-    //     };
-    //     $.ajax({
-    //         header: {
-    //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
-    //             Vary: "Origin",
-    //             contentType: "application/json"
-    //         },
-    //         method: "POST",
-    //         data: poll
-
-    //     }).then(function (response) {
-    //         console.log(response);
-    //     })
-    // });
-
-
-    // progress bar
-    $(document).ajaxStart(function () {
-        // show loader on start
-        $(".preloader-wrapper").show();
-    }).ajaxSuccess(function () {
-        // hide loader on success
-        $(".preloader-wrapper").hide();
-    });
-
-
-
 });
