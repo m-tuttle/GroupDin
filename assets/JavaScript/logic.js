@@ -8,6 +8,7 @@ $(document).ready(function () {
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
 
     });
+    /////////This section needs a lot of work and cleaning up///////////////////
     var guestCount = 0
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
@@ -44,6 +45,7 @@ $(document).ready(function () {
 
     });
     $('.guest-display').html(localStorage.getItem('savedGuest'));
+/////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
     $("#add-restaurant").on("click", function (event) {
@@ -87,7 +89,7 @@ $(document).ready(function () {
                 console.log(response);
 
                 //new restaurant variables
-                var rowDiv = $("<div class ='row'>")
+                var rowDiv = $("<div id='restaurant' class ='row'>")
                 var newDiv = $("<div>");
                 var imgDiv = $("<div>");
                 var resImg = $("<img>");
@@ -102,7 +104,7 @@ $(document).ready(function () {
 
                 //adds styling and the src attribute to the image
                 resImg.addClass("responsive-img");
-                resImg.attr("alt", response.name + " picture");
+                resImg.attr("alt", "Image of " + response.name);
                 resImg.attr("src", response.thumb);
 
                 //appends image to the new div
@@ -114,7 +116,7 @@ $(document).ready(function () {
                 resDescription.addClass("col s5");
 
                 //adds restaurant information to the descrition div
-                resDescription.append("<h5><a href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p><strong>Location:</strong> " + response.location.address + "</p><p><strong>Cuisine:</strong> " + response.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.user_rating.rating_text + "</p><br>");
+                resDescription.append("<h5><a target='_blank' href=" + response.url + " target='_blank'>" + response.name + "</a></h5><p><strong>Location:</strong> " + response.location.address + "</p><p><strong>Cuisine:</strong> " + response.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.user_rating.rating_text + "</p><br>");
 
                 newDiv.append(resDescription);
 
@@ -125,7 +127,8 @@ $(document).ready(function () {
                 removeRestaurant.append(removeButton);
 
                 newDiv.append(removeRestaurant);
-                rowDiv.append(newDiv)
+                rowDiv.append(newDiv);
+                rowDiv.prepend("<hr><br>");
 
                 //appends the new restaurant to the description row
                 $("#description").prepend(rowDiv);
@@ -136,10 +139,14 @@ $(document).ready(function () {
 
         });
     });
-
+    //adds make plan button under first displayed restaurant
+    $("#add-restaurant").one("click", function (event) {
+    
+        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+    });
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
-        $(this).closest(".restaurant-container").remove();
+        $(this).closest('#restaurant').remove();
     })
 
     
