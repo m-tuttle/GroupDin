@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    var restaurant = $('#restaurant');
     //progress bar hide
     $('.preloader-wrapper').hide();
     //modal handler
@@ -11,7 +10,7 @@ $(document).ready(function () {
     });
     /////////This section needs a lot of work and cleaning up///////////////////
     var guestCount = 0
-    $('#add-guest-btn').on('click', function () {
+    $(document).on('click','#add-guest-btn', function () {
         event.preventDefault();
         localStorage.clear();
         var guestsArr = [];
@@ -28,7 +27,7 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
-        $('.res-display').append(restaurant);
+        $('.res-display').append('#description');
         guestsArr.push(newDiv.text());
 
 
