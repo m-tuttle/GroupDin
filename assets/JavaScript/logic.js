@@ -1,5 +1,6 @@
-// variable to store the emails of the guests entered by the user
+// variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
+var guestCount = 0;
 // function referenced in the HTML of the send email link, which runs the mailto in a new window
 function sendMail () {
     window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
@@ -17,7 +18,6 @@ $(document).ready(function () {
 
     });
     /////////This section needs a lot of work and cleaning up///////////////////
-    var guestCount = 0;
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
         var name = $('#name-input').val().trim();
@@ -43,6 +43,7 @@ $(document).ready(function () {
     $(document).on('click', '.remove', function () {
         var guestNumber = $(this).attr("data-guest");
         $("#guest-" + guestNumber).remove();
+        guestsArr.splice(guestNumber, 1);
 
     });
     $('.guest-display').html(localStorage.getItem('savedGuest'));
