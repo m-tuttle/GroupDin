@@ -1,4 +1,5 @@
 $(document).ready(function () {
+   var restaurant = $('#restaurant');
     //progress bar hide
     $('.preloader-wrapper').hide();
     //modal handler
@@ -27,6 +28,7 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
+        $('.res-display').append(restaurant);
         guestsArr.push(newDiv.text());
 
 
