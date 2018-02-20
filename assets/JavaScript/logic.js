@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     });
     $('.guest-display').html(localStorage.getItem('savedGuest'));
-/////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
     $("#add-restaurant").on("click", function (event) {
@@ -140,8 +140,8 @@ $(document).ready(function () {
         });
     });
     //adds make plan button under first displayed restaurant
-    $("#add-restaurant").one("click", function (event) {
-    
+    $("#add-restaurant").on("click", function (event) {
+
         $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
     });
     //removes div of associated restaurant when remove button is clicked
@@ -149,5 +149,5 @@ $(document).ready(function () {
         $(this).closest('#restaurant').remove();
     })
 
-    
+
 });
