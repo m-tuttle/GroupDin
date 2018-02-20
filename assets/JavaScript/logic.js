@@ -2,7 +2,7 @@
 var guestsArr = [];
 var guestCount = 0;
 // function referenced in the HTML of the send email link, which runs the mailto in a new window
-function sendMail () {
+function sendMail() {
     window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
 }
 
@@ -101,8 +101,14 @@ $(document).ready(function () {
 
                 //adds styling and the src attribute to the image
                 resImg.addClass("responsive-img");
-                resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
-                resImg.attr("src", response.restaurants[0].restaurant.thumb);
+
+                if (!response.restaurants[0].restaurant.thumb) {
+                    resImg.attr("alt", "Generic Food Image");
+                    resImg.attr("src", "http://jumpingrocks.com/files/seo-galleries/gallery-161/thumbs/Cheshire-T-Food-Wine-051-200x200.jpg");
+                } else {
+                    resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
+                    resImg.attr("src", response.restaurants[0].restaurant.thumb);
+                }
 
                 //appends image to the new div
                 imgDiv.append(resImg);
