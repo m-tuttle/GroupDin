@@ -7,6 +7,8 @@ function sendMail() {
 }
 
 $(document).ready(function () {
+    //locally store last used location
+    $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
     $('.preloader-wrapper').hide();
     //modal handler
@@ -66,7 +68,7 @@ $(document).ready(function () {
         var result = restaurant.replace(" ", "%20");
         var locationFix = location.replace(" ", "%20");
         var queryURL = "https://developers.zomato.com/api/v2.1/cities?q=" + locationFix;
-
+        localStorage.setItem("favLocal", location)
         console.log(queryURL);
 
         //calls to zomato API
