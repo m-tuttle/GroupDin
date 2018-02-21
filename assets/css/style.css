@@ -52,7 +52,7 @@ h3 {
     font-size: 30px;
 }
 
-main {
+.main-wrapper {
     flex: 1 0 auto;
 }
 
