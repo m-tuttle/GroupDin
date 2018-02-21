@@ -14,7 +14,7 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: uluru[0]
-    });  
+    });
     for (i = 0; i < uluru.length; i++) {
         var marker = new google.maps.Marker({
             position: uluru[i],
@@ -186,7 +186,10 @@ $(document).ready(function () {
                 $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
 
                 // store the lat and long data in a variable and store in array for use in google map and call init map
-                var placeLocation = {lat: Number(response.restaurants[0].restaurant.location.latitude), lng: Number(response.restaurants[0].restaurant.location.longitude)};
+                var placeLocation = {
+                    lat: Number(response.restaurants[0].restaurant.location.latitude),
+                    lng: Number(response.restaurants[0].restaurant.location.longitude)
+                };
                 uluru.push(placeLocation);
                 initMap();
                 $("#map").show();
