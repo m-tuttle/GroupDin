@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 
     $("#plan-btn").on("click", function () {
-        $("#description").clone().appendTo($(".res-display"));
+        $(".res-display").html($("#description").clone());
     });
 
     /////////This section needs a lot of work and cleaning up///////////////////
