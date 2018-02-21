@@ -39,3 +39,9 @@ h5{
 h3{
     font-size: 30px;
 }
+
+@media screen and (max-width: 590px) {
+    #plan-btn {
+       content:"Plan";
+    }
+}
