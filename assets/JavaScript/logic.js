@@ -1,10 +1,11 @@
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
 var guestCount = 0;
-// function referenced in the HTML of the send email link, which runs the mailto in a new window
-function sendMail() {
-    window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
-}
+
+// initialize emailjs library
+(function(){
+    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
+ })();
 
 $(document).ready(function () {
     $('#description').html(localStorage.getItem('results'));
@@ -24,7 +25,7 @@ $(document).ready(function () {
         $(".res-display").html($("#description").clone());
     });
 
-    /////////This section needs a lot of work and cleaning up///////////////////
+    // on click handler for the add guest button inside the modal
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
         var name = $('#name-input').val().trim();
@@ -40,13 +41,13 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
-        //$('.res-display').append(restaurant);
         guestsArr.push(email);
         $('#name-input').val('');
         $('#email-input').val('');
         guestCount++;
     });
 
+    // on click function for guest remove button
     $(document).on('click', '.remove', function () {
         var guestNumber = $(this).attr("data-guest");
         $("#guest-" + guestNumber).remove();
@@ -54,7 +55,11 @@ $(document).ready(function () {
 
     });
 
-    $('.guest-display').html(localStorage.getItem('savedGuest'));
+    // click handler to send out plan email
+    $("#sendEmail").one("click", function() {
+        emailjs.send("gmail", "groupdin", {"emails": guestsArr.join(", "),"reply_to": guestsArr.join(", "),"message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),"info": $(".res-display").html()});
+    })
+
     /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
