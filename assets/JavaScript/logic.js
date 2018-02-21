@@ -22,7 +22,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#plan-btn", function () {
-        $(".res-display").html($("#description").clone());
+        var restaurantsClone = $("#description").clone();
+        restaurantsClone.find(".plan-remove").remove();
+        $(".res-display").html(restaurantsClone);
     });
 
     // on click handler for the add guest button inside the modal
@@ -37,7 +39,7 @@ $(document).ready(function () {
         newDiv.append(name + '\xa0\xa0\xa0\xa0');
         newDiv.append(email + '\xa0\xa0\xa0\xa0');
         var removeBtn = $("<button>").attr("data-guest", guestCount);
-        removeBtn.attr("class", "remove btn red lighten-1");
+        removeBtn.attr("class", "remove-btn btn red lighten-1");
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
@@ -48,7 +50,7 @@ $(document).ready(function () {
     });
 
     // on click function for guest remove button
-    $(document).on('click', '.remove', function () {
+    $(document).on('click', '.remove-btn', function () {
         var guestNumber = $(this).attr("data-guest");
         $("#guest-" + guestNumber).remove();
         guestsArr.splice(guestNumber, 1);
@@ -68,7 +70,7 @@ $(document).ready(function () {
     /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
-    $("#add-restaurant").on("click", function (event) {
+    $(document).on("click", "#add-restaurant", function (event) {
 
         //prevents page reload
         event.preventDefault();
@@ -145,7 +147,7 @@ $(document).ready(function () {
                 newDiv.append(resDescription);
 
                 //adds remove button
-                removeRestaurant.addClass("col s3");
+                removeRestaurant.addClass("col s3 plan-remove");
                 removeButton.addClass("btn remove red lighten-1");
                 removeButton.html('Remove<i class="material-icons right">delete</i>')
                 removeRestaurant.append(removeButton);
@@ -173,7 +175,8 @@ $(document).ready(function () {
     $(document).on("click", ".remove", function () {
         $(this).closest('#restaurant').remove();
         var description = $("#description").html();
-        localStorage.setItem("results", description)
+        localStorage.setItem("results", description);
+
     });
 
     // $(document).on("click", "#plan-btn", function () {
