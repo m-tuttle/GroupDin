@@ -17,9 +17,7 @@ $(document).ready(function () {
 
     });
     /////////This section needs a lot of work and cleaning up///////////////////
-    var guestCount = 0
-    $(document).on('click', '#add-guest-btn', function () {
-
+    $('#add-guest-btn').on('click', function () {
         event.preventDefault();
         var name = $('#name-input').val().trim();
         var email = $('#email-input').val().trim();
@@ -34,10 +32,6 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
-        $('.res-display').append('#description');
-        guestsArr.push(newDiv.text());
-
-
         $('.res-display').append(restaurant);
         guestsArr.push(email);
         $('#name-input').val('');
