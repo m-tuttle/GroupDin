@@ -1,13 +1,15 @@
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
 var guestCount = 0;
-
 // initialize emailjs library
 (function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
 })();
 
+
 $(document).ready(function () {
+    $('#plan-btn').removeClass("disabled");
+    // locally store previously displayed search results
     $('#description').html(localStorage.getItem('results'));
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
@@ -82,6 +84,7 @@ $(document).ready(function () {
         var locationFix = location.replace(" ", "%20");
         var queryURL = "https://developers.zomato.com/api/v2.1/cities?q=" + locationFix;
         localStorage.setItem("favLocal", location)
+        $('#plan-btn').removeClass("disabled");
         console.log(queryURL);
 
         //calls to zomato API
@@ -160,7 +163,6 @@ $(document).ready(function () {
                 $("#description").prepend(rowDiv);
                 var description = $("#description").html();
                 localStorage.setItem("results", description)
-                console.log(description);
                 //clears search box
                 $("#text-box").val("");
 
@@ -176,7 +178,10 @@ $(document).ready(function () {
         $(this).closest('#restaurant').remove();
         var description = $("#description").html();
         localStorage.setItem("results", description);
-
+        if ($('#description').html() === "") {
+            $('#plan-btn').addClass("disabled");
+            $('.make-plan-btn').html("");
+        }
     });
 
     // $(document).on("click", "#plan-btn", function () {
