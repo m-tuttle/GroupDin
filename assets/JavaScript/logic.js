@@ -1,10 +1,16 @@
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
 var guestCount = 0;
-// function referenced in the HTML of the send email link, which runs the mailto in a new window
-function sendMail() {
-    window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
-}
+
+// initialize emailjs library
+(function(){
+    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
+ })();
+
+ // function referenced in the HTML of the send email link, which runs the mailto in a new window
+// function sendMail() {
+//     window.open("mailto:" + guestsArr.join(", ") + "?subject=" + encodeURIComponent("GroupDīn Plan") + '&body=' + encodeURIComponent($("#icon_prefix2").val().trim()));
+// }
 
 $(document).ready(function () {
     //progress bar hide
@@ -50,6 +56,11 @@ $(document).ready(function () {
         guestsArr.splice(guestNumber, 1);
 
     });
+
+    // click handler to send out plan email
+    $("#sendEmail").one("click", function() {
+        emailjs.send("gmail", "groupdin", {"emails": guestsArr.join(", "),"reply_to": guestsArr.join(", "),"message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),"info": $(".res-display").html()});
+    })
 
     $('.guest-display').html(localStorage.getItem('savedGuest'));
     /////////////////////////////////////////////////////////////////////////
