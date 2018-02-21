@@ -1,13 +1,38 @@
-// variable to store the emails of the guests entered by the user and count users
-var guestsArr = [];
-var guestCount = 0;
-
-// initialize emailjs library
-(function () {
-    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
-})();
-
 $(document).ready(function () {
+    // variable to store the emails of the guests entered by the user and count users
+    var guestsArr = [];
+    var guestCount = 0;
+
+    // initialize emailjs library
+    (function () {
+        emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
+    })();
+
+    var config = {
+        apiKey: "AIzaSyD0uy5Vy-ihUzdezogRbIkDNBPkB5OlZ8g",
+        authDomain: "groupdin-da46a.firebaseapp.com",
+        databaseURL: "https://groupdin-da46a.firebaseio.com",
+        projectId: "groupdin-da46a",
+        storageBucket: "",
+        messagingSenderId: "636669982330"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    //variables to track presence
+    var connectionsRef = database.ref("/connections");
+    var connectedRef = database.ref(".info/connected");
+    var plans = database.ref("/plans");
+
+    connectedRef.on("value", function (snapshot) {
+
+        if (snapshot.val()) {
+            var con = connectionsRef.push(true);
+            con.onDisconnect().remove();
+        }
+    });
+
     $('#description').html(localStorage.getItem('results'));
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
