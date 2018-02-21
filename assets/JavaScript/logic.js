@@ -3,9 +3,9 @@ var guestsArr = [];
 var guestCount = 0;
 
 // initialize emailjs library
-(function(){
+(function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
- })();
+})();
 
 $(document).ready(function () {
     $('#description').html(localStorage.getItem('results'));
@@ -56,8 +56,13 @@ $(document).ready(function () {
     });
 
     // click handler to send out plan email
-    $("#sendEmail").one("click", function() {
-        emailjs.send("gmail", "groupdin", {"emails": guestsArr.join(", "),"reply_to": guestsArr.join(", "),"message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),"info": $(".res-display").html()});
+    $("#sendEmail").one("click", function () {
+        emailjs.send("gmail", "groupdin", {
+            "emails": guestsArr.join(", "),
+            "reply_to": guestsArr.join(", "),
+            "message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),
+            "info": $(".res-display").html()
+        });
     })
 
     /////////////////////////////////////////////////////////////////////////
@@ -162,48 +167,47 @@ $(document).ready(function () {
             });
 
         });
-
-        //removes div of associated restaurant when remove button is clicked
-        $(document).on("click", ".remove", function () {
-            $(this).closest('#restaurant').remove();
-            var description = $("#description").html();
-            localStorage.setItem("results", description)
-        });
-
-        // $(document).on("click", "#plan-btn", function () {
-
-        //     var poll = {
-        //         "title": "This is a test poll.",
-        //         "options": [
-        //             "Option #1",
-        //             "Option #2"
-        //         ],
-        //         "multi": true
-        //     };
-        //     $.ajax({
-        //         header: {
-        //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
-        //             Vary: "Origin",
-        //             contentType: "application/json"
-        //         },
-        //         method: "POST",
-        //         data: poll
-
-        //     }).then(function (response) {
-        //         console.log(response);
-        //     })
-        // });
-
-
-        // progress bar
-        $(document).ajaxStart(function () {
-            // show loader on start
-            $(".preloader-wrapper").show();
-        }).ajaxSuccess(function () {
-            // hide loader on success
-            $(".preloader-wrapper").hide();
-        });
-
-
     });
+
+    //removes div of associated restaurant when remove button is clicked
+    $(document).on("click", ".remove", function () {
+        $(this).closest('#restaurant').remove();
+        var description = $("#description").html();
+        localStorage.setItem("results", description)
+    });
+
+    // $(document).on("click", "#plan-btn", function () {
+
+    //     var poll = {
+    //         "title": "This is a test poll.",
+    //         "options": [
+    //             "Option #1",
+    //             "Option #2"
+    //         ],
+    //         "multi": true
+    //     };
+    //     $.ajax({
+    //         header: {
+    //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
+    //             Vary: "Origin",
+    //             contentType: "application/json"
+    //         },
+    //         method: "POST",
+    //         data: poll
+
+    //     }).then(function (response) {
+    //         console.log(response);
+    //     })
+    // });
+
+
+    // progress bar
+    $(document).ajaxStart(function () {
+        // show loader on start
+        $(".preloader-wrapper").show();
+    }).ajaxSuccess(function () {
+        // hide loader on success
+        $(".preloader-wrapper").hide();
+    });
+
 });
