@@ -7,6 +7,7 @@ function sendMail() {
 }
 
 $(document).ready(function () {
+    $('#description').html(localStorage.getItem('results'));
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -145,7 +146,9 @@ $(document).ready(function () {
 
                 //appends the new restaurant to the description row
                 $("#description").prepend(rowDiv);
-
+                var description = $("#description").html();
+                localStorage.setItem("results", description)
+                console.log(description);
                 //clears search box
                 $("#text-box").val("");
 
@@ -158,6 +161,8 @@ $(document).ready(function () {
         //removes div of associated restaurant when remove button is clicked
         $(document).on("click", ".remove", function () {
             $(this).closest('#restaurant').remove();
+            var description = $("#description").html();
+            localStorage.setItem("results", description)
         });
 
         // $(document).on("click", "#plan-btn", function () {
