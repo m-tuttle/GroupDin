@@ -1,40 +1,15 @@
-<<<<<<< HEAD
-$(document).ready(function () {
-    // variable to store the emails of the guests entered by the user and count users
-    var guestsArr = [];
-    var guestCount = 0;
-
-    // variable to store lat and long data of restaurants for display on google map
-    var uluru = [];
-
-    // initialize emailjs library
-    (function () {
-        emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
-    })();
-
-    // function for initializing the google map
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: uluru[0]
-=======
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
 var guestCount = 0;
-<<<<<<< HEAD
-=======
 
 // variable to store lat and long data of restaurants for display on google map
 var uluru = [];
 
->>>>>>> beee3bf216195b176dc17f09a93eb6adcbb0313e
 // initialize emailjs library
 (function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
 })();
 
-<<<<<<< HEAD
-=======
 // function for initializing the google map
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -45,59 +20,13 @@ function initMap() {
         var marker = new google.maps.Marker({
             position: uluru[i],
             map: map
->>>>>>> 0d52ec422af104105a6b86c44ff0f86b51fcf601
         });
-        for (i = 0; i < uluru.length; i++) {
-            var marker = new google.maps.Marker({
-                position: uluru[i],
-                map: map
-            });
-        }
     }
-<<<<<<< HEAD
-
-    // variable to store the emails of the guests entered by the user and count users
-    var guestsArr = [];
-    var guestCount = 0;
-
-    // initialize emailjs library
-    (function () {
-        emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
-    })();
-
-    var config = {
-        apiKey: "AIzaSyD0uy5Vy-ihUzdezogRbIkDNBPkB5OlZ8g",
-        authDomain: "groupdin-da46a.firebaseapp.com",
-        databaseURL: "https://groupdin-da46a.firebaseio.com",
-        projectId: "groupdin-da46a",
-        storageBucket: "",
-        messagingSenderId: "636669982330"
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
-
-    //variables to track presence
-    var connectionsRef = database.ref("/connections");
-    var connectedRef = database.ref(".info/connected");
-    var plans = database.ref("/plans");
-
-    connectedRef.on("value", function (snapshot) {
-
-        if (snapshot.val()) {
-            var con = connectionsRef.push(true);
-            con.onDisconnect().remove();
-        }
-    });
-
-=======
 }
->>>>>>> beee3bf216195b176dc17f09a93eb6adcbb0313e
 
 $(document).ready(function () {
     $('#plan-btn').removeClass("disabled");
     // locally store previously displayed search results
->>>>>>> 0d52ec422af104105a6b86c44ff0f86b51fcf601
     $('#description').html(localStorage.getItem('results'));
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
@@ -258,10 +187,7 @@ $(document).ready(function () {
                 $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
 
                 // store the lat and long data in a variable and store in array for use in google map and call init map
-                var placeLocation = {
-                    lat: Number(response.restaurants[0].restaurant.location.latitude),
-                    lng: Number(response.restaurants[0].restaurant.location.longitude)
-                };
+                var placeLocation = {lat: Number(response.restaurants[0].restaurant.location.latitude), lng: Number(response.restaurants[0].restaurant.location.longitude)};
                 uluru.push(placeLocation);
                 initMap();
                 $("#map").show();
