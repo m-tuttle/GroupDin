@@ -24,9 +24,16 @@ function initMap() {
 }
 
 $(document).ready(function () {
-    $('#plan-btn').removeClass("disabled");
     // locally store previously displayed search results
     $('#description').html(localStorage.getItem('results'));
+    // disable plan button (and remove 2nd plan button) if there are no restaurants displayed
+    if ($('#description').html().trim() === "") {
+        $('#plan-btn').addClass("disabled");
+        $('.make-plan-btn').html("");
+    } else {
+        $('#plan-btn').removeClass("disabled");
+    }
+    
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -200,9 +207,12 @@ $(document).ready(function () {
         $(this).closest('#restaurant').remove();
         var description = $("#description").html();
         localStorage.setItem("results", description);
-        if ($('#description').html() === "") {
+        // upon removal of a restaurant this will disable the plan button (and remove the 2nd one) if there are no retaurants
+        if ($('#description').html().trim() === "") {
             $('#plan-btn').addClass("disabled");
             $('.make-plan-btn').html("");
+        } else {
+            $('#plan-btn').removeClass("disabled");
         }
     });
 
