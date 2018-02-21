@@ -16,6 +16,11 @@ $(document).ready(function () {
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
 
     });
+
+    $("#plan-btn").on("click", function () {
+        $("#description").clone().appendTo($(".res-display"));
+    });
+
     /////////This section needs a lot of work and cleaning up///////////////////
     $('#add-guest-btn').on('click', function () {
         event.preventDefault();
@@ -32,7 +37,7 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
-        $('.res-display').append(restaurant);
+        //$('.res-display').append(restaurant);
         guestsArr.push(email);
         $('#name-input').val('');
         $('#email-input').val('');
