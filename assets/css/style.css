@@ -60,6 +60,11 @@ footer {
     flex-shrink: 0;
 }
 
+#map {
+    display: none;
+    height: 200px;
+}
+
 @media screen and (max-width: 590px) {
     #plan-btn {
         content: "Plan";
