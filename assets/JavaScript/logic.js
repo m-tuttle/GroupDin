@@ -4,7 +4,6 @@ var guestCount = 0;
 
 // variable to store lat and long data of restaurants for display on google map
 var uluru = [];
-
 // initialize emailjs library
 (function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
