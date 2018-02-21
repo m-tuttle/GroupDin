@@ -11,4 +11,31 @@ p{
 
 h1{
     margin-bottom: 0;
+    -webkit-text-stroke: 1px black;
+    font-weight: bolder;
+}
+
+body{
+    background: url(../images/foodBackground.png) no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+.modal-content {
+    color: black;
+    
+}
+#restaurant{
+    background: rgba(255, 255, 255, 0.829);
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    padding-bottom: 2.5%;
+    color: black;
+}
+h4,
+h5{
+    font-weight: bolder;
+    -webkit-text-stroke: 1px black;
+}
+h3{
+    font-size: 30px;
 }

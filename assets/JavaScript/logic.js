@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     });
 
-    $("#plan-btn").on("click", function () {
+    $(document).on("click", "#plan-btn", function () {
         $(".res-display").html($("#description").clone());
     });
 
@@ -125,7 +125,7 @@ $(document).ready(function () {
                 resDescription.addClass("col s5");
 
                 //adds restaurant information to the descrition div
-                resDescription.append("<h5><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h5><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
+                resDescription.append("<h3><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h3><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
 
                 console.log(response);
 
@@ -148,7 +148,7 @@ $(document).ready(function () {
                 $("#text-box").val("");
 
                 //adds make a plan button below restaurant
-                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
             });
 
         });
