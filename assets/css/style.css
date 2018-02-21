@@ -59,3 +59,9 @@ main {
 footer {
     flex-shrink: 0;
 }
+
+@media screen and (max-width: 590px) {
+    #plan-btn {
+        content: "Plan";
+    }
+}
