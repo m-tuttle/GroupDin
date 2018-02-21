@@ -1,41 +1,61 @@
 .modal-content {
     width: 100%;
 }
+
 .container {
     width: 90%;
 }
-p{
+
+html,
+body {
+    height: 100%;
+}
+
+p {
     margin-top: 3px;
     margin-bottom: 3px;
 }
 
-h1{
+h1 {
     margin-bottom: 0;
     -webkit-text-stroke: 1px black;
     font-weight: bolder;
 }
 
-body{
+body {
     background: url(../images/foodBackground.png) no-repeat center center fixed;
     background-size: cover;
     color: white;
+    display: flex;
+    flex-direction: column;
 }
+
 .modal-content {
     color: black;
-    
 }
-#restaurant{
+
+#restaurant {
     background: rgba(255, 255, 255, 0.829);
     padding-left: 2.5%;
     padding-right: 2.5%;
     padding-bottom: 2.5%;
     color: black;
 }
+
 h4,
-h5{
+h5 {
     font-weight: bolder;
     -webkit-text-stroke: 1px black;
 }
-h3{
+
+h3 {
     font-size: 30px;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
 }
