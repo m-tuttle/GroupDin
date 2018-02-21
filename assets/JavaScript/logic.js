@@ -1,11 +1,34 @@
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
 var guestCount = 0;
+<<<<<<< HEAD
+=======
+
+// variable to store lat and long data of restaurants for display on google map
+var uluru = [];
+
+>>>>>>> beee3bf216195b176dc17f09a93eb6adcbb0313e
 // initialize emailjs library
 (function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
 })();
 
+<<<<<<< HEAD
+=======
+// function for initializing the google map
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: uluru[0]
+    });  
+    for (i = 0; i < uluru.length; i++) {
+        var marker = new google.maps.Marker({
+            position: uluru[i],
+            map: map
+        });
+    }
+}
+>>>>>>> beee3bf216195b176dc17f09a93eb6adcbb0313e
 
 $(document).ready(function () {
     $('#plan-btn').removeClass("disabled");
@@ -168,6 +191,12 @@ $(document).ready(function () {
 
                 //adds make a plan button below restaurant
                 $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+
+                // store the lat and long data in a variable and store in array for use in google map and call init map
+                var placeLocation = {lat: Number(response.restaurants[0].restaurant.location.latitude), lng: Number(response.restaurants[0].restaurant.location.longitude)};
+                uluru.push(placeLocation);
+                initMap();
+                $("#map").show();
             });
 
         });
