@@ -141,15 +141,13 @@ $(document).ready(function () {
 
                 //clears search box
                 $("#text-box").val("");
+
+                //adds make a plan button below restaurant
+                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
             });
 
         });
 
-        //adds make plan button under first displayed restaurant
-        $("#add-restaurant").on("click", function (event) {
-
-            $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
-        });
         //removes div of associated restaurant when remove button is clicked
         $(document).on("click", ".remove", function () {
             $(this).closest('#restaurant').remove();
