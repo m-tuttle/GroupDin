@@ -17,12 +17,9 @@ $(document).ready(function () {
 
     });
     /////////This section needs a lot of work and cleaning up///////////////////
-<<<<<<< HEAD
     var guestCount = 0
-    $(document).on('click','#add-guest-btn', function () {
-=======
-    $('#add-guest-btn').on('click', function () {
->>>>>>> 5391b7c352787995f1255dab4172d18caaa3185f
+    $(document).on('click', '#add-guest-btn', function () {
+
         event.preventDefault();
         var name = $('#name-input').val().trim();
         var email = $('#email-input').val().trim();
@@ -37,19 +34,16 @@ $(document).ready(function () {
         removeBtn.html('Remove<i class="material-icons right">delete</i>');
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
-<<<<<<< HEAD
         $('.res-display').append('#description');
         guestsArr.push(newDiv.text());
 
 
-=======
         $('.res-display').append(restaurant);
         guestsArr.push(email);
->>>>>>> 5391b7c352787995f1255dab4172d18caaa3185f
         $('#name-input').val('');
         $('#email-input').val('');
         guestCount++;
-    })
+    });
 
     $(document).on('click', '.remove', function () {
         var guestNumber = $(this).attr("data-guest");
@@ -57,6 +51,7 @@ $(document).ready(function () {
         guestsArr.splice(guestNumber, 1);
 
     });
+
     $('.guest-display').html(localStorage.getItem('savedGuest'));
     /////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +60,7 @@ $(document).ready(function () {
 
         //prevents page reload
         event.preventDefault();
+
         //search variables
         var location = $("#location").val().trim();
         var restaurant = $("#text-box").val().trim();
