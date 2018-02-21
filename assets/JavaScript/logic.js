@@ -4,6 +4,7 @@ var guestCount = 0;
 
 // variable to store lat and long data of restaurants for display on google map
 var uluru = [];
+
 // initialize emailjs library
 (function () {
     emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
@@ -214,6 +215,7 @@ $(document).ready(function () {
         if ($('#description').html().trim() === "") {
             $('#plan-btn').addClass("disabled");
             $('.make-plan-btn').html("");
+            $("#map").hide();
         } else {
             $('#plan-btn').removeClass("disabled");
         }

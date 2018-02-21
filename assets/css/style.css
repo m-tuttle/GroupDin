@@ -63,6 +63,7 @@ footer {
 #map {
     display: none;
     height: 200px;
+    margin-bottom: 5px;
 }
 
 @media screen and (max-width: 590px) {
