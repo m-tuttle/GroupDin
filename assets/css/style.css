@@ -29,9 +29,6 @@ body {
     flex-direction: column;
 }
 
-#header-content {
-    background: rgba(73, 68, 68, 0.6);
-}
 
 .modal-content {
     color: black;
@@ -68,8 +65,45 @@ footer {
     margin-bottom: 5px;
 }
 
-@media screen and (max-width: 590px) {
-    #plan-btn {
-        content: "Plan";
+
+.midtext {
+    color: lightcoral;
+}
+.din {
+    color: lightcoral;
+}
+
+li {
+    margin-right: 30px;
+}
+.opacity {
+    opacity: 0.5;
+}
+.brand-logo {
+    margin-left: 50px;
+}
+
+/* when screen is 1000px or less Logo is centered w/no margin */
+@media screen and (max-width:1000px) {
+
+    .brand-logo {
+        margin-left: 0;
     }
+}
+
+/* mobile version of website, when screen is 480px or less */
+@media screen and (max-width: 480px) {
+
+    /* #searchform {
+        width:100%;
+    } */
+    #main-wrapper {
+        width: 100%;
+    }
+    #add-restaurant {
+        margin-bottom: 10px;
+    }
+
+
+    
 }

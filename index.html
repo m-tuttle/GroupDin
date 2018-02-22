@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GroupDīn</title>
 
     <!-- Materialize's Compiled and minified CSS -->
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/Din.ico" />
+    
 </head>
 
 <body>
@@ -25,7 +27,7 @@
                     <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
                     <ul class="right">
                         <li>
-                            <a class="waves-effect waves-light modal-trigger" href="#modal2">Description
+                            <a class="waves-effect waves-light modal-trigger hide-on-small-only" href="#modal2">What is GroupDīn?
                             </a>
                         </li>
                     </ul>
@@ -39,24 +41,24 @@
             <div class="container">
                 <div class="row">
                     <header class="col s12 center-align" id="header-content">
-                        <h1>GroupDīn</h1>
-                        <h4>Make planning dinner easier on yourself!</h4>
-                        <h5>Pick your favorite restaurants or places you've been dying to try and add them below.</h5>
-                        <h5>When you're ready to send out your list click on the "Make the Plan" button.</h5>
+                        <h1>Group<span class="din">Dīn</span></h1>
+                        <h4>Make <span class="midtext">planning dinner</span> easier on yourself!</h4>
+                        <!-- <h5>Pick your favorite restaurants or places you've been dying to try and add them below.</h5>
+                        <h5>When you're ready to send out your list click on the "Make the Plan" button.</h5> -->
                     </header>
                 </div>
 
                 <div class="row">
                     <form id="searchForm">
-                        <div class="input-field col s3">
+                        <div class="input-field col s12 m3 ">
                             <i class="material-icons prefix">add_location</i>
                             <input type="text" placeholder="City" id="location" class="validate" required>
                         </div>
-                        <div class="input-field col s9">
+                        <div class="input-field col s12 m9">
                             <i class="material-icons prefix">search</i>
                             <input type="text" placeholder="Search for any restaurant" id="text-box" class="validate">
                         </div>
-                        <button class="btn col s3 red waves-effect waves-red lighten-1" type="submit" id="add-restaurant">Add Restaurant
+                        <button class="btn col s12 m3 red waves-effect waves-red lighten-1" type="submit" id="add-restaurant">Add Restaurant
                             <i class="material-icons right">restaurant</i>
                         </button>
                         <div class="center-align col offset-s2 col s2">
@@ -74,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="col offset-s2 s3 waves-effect waves-red btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan
+                        <a class="col offset-m2 m3 s12 waves-effect waves-red btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan
                             <i class="material-icons right">assignment</i>
                         </a>
                     </form>
@@ -84,10 +86,15 @@
                 <div class="row" id="description">
                 </div>
                 <!-- google map display goes here -->
-                <div classs="row" id="map">
+                <div class="row" id="map">
                 </div>
+                <br>
                 <!-- Modal Trigger -->
-                <div class="make-plan-btn">
+                <div class="row">
+                    <div class=" col s3 make-plan-btn">
+                    </div>
+                    <div class=" col offset-s6 s3 clear-btn">
+                    </div>
                 </div>
                 <br>
             </div>
@@ -149,13 +156,14 @@
     </div>
     <!-- end of make the plan modal -->
     <!-- description modal begins here -->
-    <div id="modal2" class="modal">
+    <div id="modal2" class="modal opacity">
         <div class="modal-content container">
             <h3>GroupDīn Description</h3>
             <div class="row">
                 <p>GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
                     a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again. Every
-                    group's got one! GroupDīn allows you to create a list of restaurants and seamlessly send it out to the
+                    group's got one!</p>
+                    <p>GroupDīn allows you to create a list of restaurants and seamlessly send it out to the
                     rest of the group. Try it out! Pick your favorite restaurants or places you've been dying to try and
                     add them below. When you're ready to send out your list, click on the "Make the Plan" button.</p>
             </div>
@@ -166,19 +174,31 @@
         </div>
     </div>
     <!-- end of description modal -->
-
+    <!-- clearAll modal -->
+    <div id="modal3" class="modal">
+        <div class="modal-content container">
+            <h4>Are you sure you want to clear all your restaurants?</h4>
+        </div>
+        <div class="modal-footer">
+            <button id="clrAll" class="clear-permanent waves-effect modal-action modal-close waves-green btn red lighten-1">Yes, Clear
+            </button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn red lighten-1">Cancel
+            </a>
+        </div>
+    </div>
+    <!-- clearAll modal ends here --> 
     <!-- footer begins here -->
     <footer class="page-footer">
         <div class="container">
             <div class="row">
                 <div class="col s8">
-                    <h3 class="white-text">Powered by zomato</h3>
+                    <a class="white-text">Powered by zomato</a>
                 </div>
                 <!-- <div class="col l4 offset-l2 s12 right-align"> -->
                 <!-- <h5 class="white-text">Links</h5> -->
                 <div class=" col s4 right-align">
-                    <br>
-                    <a class="grey-text text-lighten-3" target="_blank" href="https://www.zomato.com">zomato Homepage</a>
+                    
+                    <a class="grey-text text-lighten-3" target="_blank" href="https://www.zomato.com">zomato | Homepage</a>
                 </div>
             </div>
         </div>

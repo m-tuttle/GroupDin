@@ -26,16 +26,25 @@ function initMap() {
     if (!map && uluru.length) {
         $("#map").show();
         map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 15,
             center: uluru[0]
         });
     }
     if (uluru.length > 0) {
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length - 1;
+        var latlngbounds = new google.maps.LatLngBounds();
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
-                map: map
+                label: labels.charAt(labelCount),
+                map: map,
             });
+            labelCount--;
+            latlngbounds.extend(uluru[i])
+        }
+        if (uluru.length > 1) {
+            map.fitBounds(latlngbounds);
         }
     } else {
         return;
@@ -63,13 +72,15 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $(document).ready(function () {
-    debugger;
+
     database.ref().once("child_added", function (snapshot) {
         console.log(snapshot.val());
         if (snapshot.hasChild(FBQuery)) {
+            uluru = [];
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
                 console.log(data);
+
 
                 var rowDiv = $("<div>");
                 var newDiv = $("<div>");
@@ -135,28 +146,30 @@ $(document).ready(function () {
             });
 
         } else {
-
             // locally store previously displayed search results
             $('#description').html(localStorage.getItem('results'));
             // disable plan button (and remove 2nd plan button) if there are no restaurants displayed
             if ($('#description').html().trim() === "") {
                 $('#plan-btn').addClass("disabled");
                 $('.make-plan-btn').html("");
+                $('.clear-btn').html("");
             } else {
+                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+                $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
                 $('#plan-btn').removeClass("disabled");
+                $('#map').show();
 
-            }
+                if (localStorage.getItem("restaurantArr")) {
+                    var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
 
-            if (localStorage.getItem("restaurantArr")) {
-                var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
-
-                if (storedRestaurants.length === null) {
-                    restaurantArr.push(storedRestaurants);
-                } else {
-                    restaurantArr = storedRestaurants;
+                    if (storedRestaurants.length === null) {
+                        restaurantArr.push(storedRestaurants);
+                    } else {
+                        restaurantArr = storedRestaurants;
+                    }
                 }
+                console.log(restaurantArr);
             }
-            console.log(restaurantArr);
         }
     }).then(function () {
         initMap();
@@ -172,6 +185,7 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
 
     });
 
@@ -180,12 +194,15 @@ $(document).ready(function () {
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
         // getting a static google map into the modal section
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length - 1;
         var uluruString = ""
         for (i = 0; i < uluru.length; i++) {
-            uluruString += uluru[i].lat + "," + uluru[i].lng + "|"
+            uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
+            labelCount--;
         }
-        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200&markers=" + uluruString;
-        var staticMapImg = $("<img>");
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString + "&key=AIzaSyAuumDe8MOiLBGbQJi6mLMDksIWLdb4DbU";
+        var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
         console.log(encodeURI(staticMapSrc));
@@ -245,6 +262,20 @@ $(document).ready(function () {
         });
     })
 
+
+    //click handler for clear permanent button
+    $(document).on('click', '.clear-permanent', function () {
+        $('#description').html("");
+        $('#plan-btn').addClass("disabled");
+        $('.make-plan-btn').html("");
+        $('.clear-btn').html("");
+        var location = localStorage.getItem('favLocal');
+        localStorage.clear();
+        localStorage.setItem('favLocal', location);
+        $('#map').hide();
+        uluru = [];
+        restaurantArr = [];
+    });
     /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
@@ -364,6 +395,12 @@ $(document).ready(function () {
                     removeRestaurant.append(removeButton);
 
                     newDiv.append(removeRestaurant);
+
+                    // var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=13&markers=" + Number(responseShort.location.latitude) + "," + Number(responseShort.location.longitude);
+                    // var staticMapImg = $("<img>");
+                    // staticMapImg.attr("src", staticMapSrc);
+                    // newDiv.append(staticMapImg);
+
                     rowDiv.append(newDiv);
                     rowDiv.prepend("<hr><br>");
 
@@ -374,6 +411,8 @@ $(document).ready(function () {
 
                     //adds make a plan button below restaurant
                     $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+                    //adds clear all button
+                    $('.clear-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
 
                     // store the lat and long data in a variable and store in array for use in google map and call init map
                     var placeLocation = {
@@ -381,12 +420,11 @@ $(document).ready(function () {
                         lng: Number(responseShort.location.longitude)
                     };
                     uluru.push(placeLocation);
+                    localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
+                    //clears search box
+                    $("#text-box").val("");
                 }
-
-                //clears search box
-                $("#text-box").val("");
-
             });
 
         });
@@ -401,6 +439,9 @@ $(document).ready(function () {
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
+            uluru.splice(resIndex, 1);
+            localStorage.setItem("uluru", JSON.stringify(uluru));
+            initMap();
         }
 
         $(this).closest('.restaurant').remove();
@@ -412,35 +453,11 @@ $(document).ready(function () {
             $('#plan-btn').addClass("disabled");
             $('.make-plan-btn').html("");
             $("#map").hide();
+            $('#clearAll').remove();
         } else {
             $('#plan-btn').removeClass("disabled");
         }
     });
-
-    // $(document).on("click", "#plan-btn", function () {
-
-    //     var poll = {
-    //         "title": "This is a test poll.",
-    //         "options": [
-    //             "Option #1",
-    //             "Option #2"
-    //         ],
-    //         "multi": true
-    //     };
-    //     $.ajax({
-    //         header: {
-    //             "Access-Control-Allow-Origin": "https://strawpoll.me/api/v2/polls/",
-    //             Vary: "Origin",
-    //             contentType: "application/json"
-    //         },
-    //         method: "POST",
-    //         data: poll
-
-    //     }).then(function (response) {
-    //         console.log(response);
-    //     })
-    // });
-
 
     // progress bar
     $(document).ajaxStart(function () {
