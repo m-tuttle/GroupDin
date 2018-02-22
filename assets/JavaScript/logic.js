@@ -121,7 +121,11 @@ $(document).ready(function () {
         }).then(function (response1) {
 
             var cityID = response1.location_suggestions[0].id;
-            var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1";
+            if (result !== "") {
+                var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1";
+            } else {
+                var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1&start=" + Math.floor(Math.random() * 100);
+            }    
 
             $.ajax({
                 url: restaurantURL,
