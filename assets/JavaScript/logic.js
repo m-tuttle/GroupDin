@@ -20,14 +20,23 @@ function initMap() {
     if (uluru.length > 0) {
         $("#map").show();
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 15,
             center: uluru[0]
         });
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length -1;
+        var latlngbounds = new google.maps.LatLngBounds();
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
-                map: map
+                label: labels.charAt(labelCount),
+                map: map,
             });
+            labelCount--;
+            latlngbounds.extend(uluru[i])
+        }
+        if (uluru.length > 1) {
+            map.fitBounds(latlngbounds);
         }
     } else {
         return;
@@ -249,6 +258,12 @@ $(document).ready(function () {
                     removeRestaurant.append(removeButton);
 
                     newDiv.append(removeRestaurant);
+
+                    // var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=13&markers=" + Number(responseShort.location.latitude) + "," + Number(responseShort.location.longitude);
+                    // var staticMapImg = $("<img>");
+                    // staticMapImg.attr("src", staticMapSrc);
+                    // newDiv.append(staticMapImg);
+
                     rowDiv.append(newDiv);
                     rowDiv.prepend("<hr><br>");
 
@@ -268,6 +283,7 @@ $(document).ready(function () {
                         lng: Number(responseShort.location.longitude)
                     };
                     uluru.push(placeLocation);
+                    localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
                     $("#map").show();
                 }
@@ -289,6 +305,9 @@ $(document).ready(function () {
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
+            uluru.splice(resIndex, 1);
+            localStorage.setItem("uluru", JSON.stringify(uluru));
+            initMap();
         }
 
         $(this).closest('.restaurant').remove();
