@@ -46,6 +46,17 @@ $(document).ready(function () {
 
     }
 
+    if (localStorage.getItem("restaurantArr")) {
+        var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
+
+        if (storedRestaurants.length) {
+            restaurantArr = storedRestaurants;
+        } else {
+            restaurantArr = [storedRestaurants];
+        }
+    }
+    console.log(restaurantArr);
+
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -162,6 +173,7 @@ $(document).ready(function () {
                 if (!restaurantArr.includes(responseShort.id)) {
 
                     restaurantArr.push(responseShort.id);
+                    localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
                     //new restaurant variables
                     var rowDiv = $("<div>");
@@ -249,7 +261,7 @@ $(document).ready(function () {
 
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
-
+            localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
         }
 
         $(this).closest('.restaurant').remove();
