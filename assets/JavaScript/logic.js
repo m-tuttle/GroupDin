@@ -95,7 +95,7 @@ $(document).ready(function () {
             uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
             labelCount --;
         }
-        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString;
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString + "&key=AIzaSyAuumDe8MOiLBGbQJi6mLMDksIWLdb4DbU";
         var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
