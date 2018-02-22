@@ -20,11 +20,12 @@ function initMap() {
     if (uluru.length > 0) {
         $("#map").show();
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 15,
             center: uluru[0]
         });
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length -1;
+        var latlngbounds = new google.maps.LatLngBounds();
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
@@ -32,6 +33,10 @@ function initMap() {
                 map: map,
             });
             labelCount--;
+            latlngbounds.extend(uluru[i])
+        }
+        if (uluru.length > 1) {
+            map.fitBounds(latlngbounds);
         }
     } else {
         return;
@@ -238,6 +243,12 @@ $(document).ready(function () {
                     removeRestaurant.append(removeButton);
 
                     newDiv.append(removeRestaurant);
+
+                    // var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=13&markers=" + Number(responseShort.location.latitude) + "," + Number(responseShort.location.longitude);
+                    // var staticMapImg = $("<img>");
+                    // staticMapImg.attr("src", staticMapSrc);
+                    // newDiv.append(staticMapImg);
+
                     rowDiv.append(newDiv);
                     rowDiv.prepend("<hr><br>");
 
