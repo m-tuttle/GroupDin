@@ -29,9 +29,6 @@ body {
     flex-direction: column;
 }
 
-#header-content {
-    background: rgba(73, 68, 68, 0.6);
-}
 
 .modal-content {
     color: black;
@@ -68,8 +65,20 @@ footer {
     margin-bottom: 5px;
 }
 
-@media screen and (max-width: 590px) {
-    #plan-btn {
-        content: "Plan";
-    }
+@media only screen and (max-width: 590px) {
+
+}
+
+.midtext {
+    color: lightcoral;
+}
+.din {
+    color: lightcoral;
+}
+
+li {
+    margin-right: 30px;
+}
+.opacity {
+    opacity: 0.5;
 }
