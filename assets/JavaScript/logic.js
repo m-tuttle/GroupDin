@@ -23,13 +23,15 @@ function initMap() {
             zoom: 12,
             center: uluru[0]
         });
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length -1;
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
+                label: labels.charAt(labelCount),
                 map: map,
-                // label: label[i],
             });
+            labelCount--;
         }
     } else {
         return;
