@@ -20,14 +20,23 @@ function initMap() {
     if (uluru.length > 0) {
         $("#map").show();
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 15,
             center: uluru[0]
         });
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length -1;
+        var latlngbounds = new google.maps.LatLngBounds();
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
-                map: map
+                label: labels.charAt(labelCount),
+                map: map,
             });
+            labelCount--;
+            latlngbounds.extend(uluru[i])
+        }
+        if (uluru.length > 1) {
+            map.fitBounds(latlngbounds);
         }
     } else {
         return;
@@ -41,7 +50,10 @@ $(document).ready(function () {
     if ($('#description').html().trim() === "") {
         $('#plan-btn').addClass("disabled");
         $('.make-plan-btn').html("");
+        $('.clear-btn').html("");
     } else {
+        $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+        $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
         $('#plan-btn').removeClass("disabled");
 
     }
@@ -131,6 +143,18 @@ $(document).ready(function () {
         });
     })
 
+    
+    //click handler for clear permanent button
+    $(document).on('click', '.clear-permanent', function () {
+        $('#description').html("");
+        $('#plan-btn').addClass("disabled");
+        $('.make-plan-btn').html("");
+        $('.clear-btn').html("");
+        var location = localStorage.getItem('favLocal');
+        localStorage.clear();
+        localStorage.setItem('favLocal', location);
+        $('#map').remove();
+    });    
     /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
@@ -235,6 +259,12 @@ $(document).ready(function () {
                     removeRestaurant.append(removeButton);
 
                     newDiv.append(removeRestaurant);
+
+                    // var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=13&markers=" + Number(responseShort.location.latitude) + "," + Number(responseShort.location.longitude);
+                    // var staticMapImg = $("<img>");
+                    // staticMapImg.attr("src", staticMapSrc);
+                    // newDiv.append(staticMapImg);
+
                     rowDiv.append(newDiv);
                     rowDiv.prepend("<hr><br>");
 
@@ -245,6 +275,8 @@ $(document).ready(function () {
 
                     //adds make a plan button below restaurant
                     $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+                    //adds clear all button
+                    $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
 
                     // store the lat and long data in a variable and store in array for use in google map and call init map
                     var placeLocation = {
@@ -252,6 +284,7 @@ $(document).ready(function () {
                         lng: Number(responseShort.location.longitude)
                     };
                     uluru.push(placeLocation);
+                    localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
                     $("#map").show();
 
@@ -274,6 +307,9 @@ $(document).ready(function () {
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
+            uluru.splice(resIndex, 1);
+            localStorage.setItem("uluru", JSON.stringify(uluru));
+            initMap();
         }
 
         $(this).closest('.restaurant').remove();
@@ -285,6 +321,7 @@ $(document).ready(function () {
             $('#plan-btn').addClass("disabled");
             $('.make-plan-btn').html("");
             $("#map").hide();
+            $('#clearAll').remove();
         } else {
             $('#plan-btn').removeClass("disabled");
         }
