@@ -85,7 +85,11 @@ li {
 
 @media screen and (max-width: 480px) {
 
-    #searchform {
+    /* #searchform {
         width:100%;
+    } */
+    #main-wrapper {
+        width: 100%;
     }
+    
 }
