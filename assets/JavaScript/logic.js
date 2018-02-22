@@ -81,9 +81,9 @@ $(document).ready(function () {
         if (snapshot.hasChild(FBQuery)) {
             uluru = [];
             restaurantArr = [];
+            localStorage.clear("restaurantArr");
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
-
                 restaurantArr.push(data.id);
                 console.log(restaurantArr);
                 localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
