@@ -1,5 +1,6 @@
 // variable to store the emails of the guests entered by the user and count users
 var guestsArr = [];
+var restaurantArr = [];
 var guestCount = 0;
 
 // variable to store lat and long data of restaurants for display on google map
@@ -34,7 +35,7 @@ $(document).ready(function () {
     } else {
         $('#plan-btn').removeClass("disabled");
     }
-    
+
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -129,11 +130,12 @@ $(document).ready(function () {
         }).then(function (response1) {
 
             var cityID = response1.location_suggestions[0].id;
+
             if (result !== "") {
                 var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1";
             } else {
                 var restaurantURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&q=" + result + "&count=1&start=" + Math.floor(Math.random() * 100);
-            }    
+            }
 
             $.ajax({
                 url: restaurantURL,
@@ -144,75 +146,85 @@ $(document).ready(function () {
             }).then(function (response) {
 
                 console.log(response);
+                var responseShort = response.restaurants[0].restaurant;
 
-                //new restaurant variables
-                var rowDiv = $("<div id='restaurant' class ='row'>")
-                var newDiv = $("<div>");
-                var imgDiv = $("<div>");
-                var resImg = $("<img>");
-                var resDescription = $("<div>");
-                var removeRestaurant = $("<div>");
-                var removeButton = $("<button>");
+                //prevents duplicate restaurant additions
+                if (!restaurantArr.includes(responseShort.id)) {
 
-                newDiv.addClass("restaurant-container");
+                    restaurantArr.push(responseShort.id);
 
-                //adds materialize styling
-                imgDiv.addClass("col s4");
+                    //new restaurant variables
+                    var rowDiv = $("<div>");
+                    var newDiv = $("<div>");
+                    var imgDiv = $("<div>");
+                    var resImg = $("<img>");
+                    var resDescription = $("<div>");
+                    var removeRestaurant = $("<div>");
+                    var removeButton = $("<button>");
 
-                //adds styling and the src attribute to the image
-                resImg.addClass("responsive-img");
+                    rowDiv.addClass("row restaurant");
+                    rowDiv.attr("id", responseShort.id);
+                    newDiv.addClass("restaurant-container");
 
-                if (!response.restaurants[0].restaurant.thumb) {
-                    resImg.attr("alt", "Generic Food Image");
-                    resImg.attr("src", "http://jumpingrocks.com/files/seo-galleries/gallery-161/thumbs/Cheshire-T-Food-Wine-051-200x200.jpg");
-                } else {
-                    resImg.attr("alt", "Image of " + response.restaurants[0].restaurant.name);
-                    resImg.attr("src", response.restaurants[0].restaurant.thumb);
+                    //adds materialize styling
+                    imgDiv.addClass("col s4");
+
+                    //adds styling and the src attribute to the image
+                    resImg.addClass("responsive-img");
+
+                    if (!responseShort.thumb) {
+                        resImg.attr("alt", "Generic Food Image");
+                        resImg.attr("src", "http://jumpingrocks.com/files/seo-galleries/gallery-161/thumbs/Cheshire-T-Food-Wine-051-200x200.jpg");
+                    } else {
+                        resImg.attr("alt", "Image of " + responseShort.name);
+                        resImg.attr("src", responseShort.thumb);
+                    }
+
+                    //appends image to the new div
+                    imgDiv.append(resImg);
+
+                    newDiv.append(imgDiv);
+
+                    //adds styling for the description section
+                    resDescription.addClass("col s5");
+
+                    //adds restaurant information to the descrition div
+                    resDescription.append("<h3><a target='_blank' href=" + responseShort.url + " target='_blank'>" + responseShort.name + "</a></h3><p><strong>Location:</strong> " + responseShort.location.address + "</p><p><strong>Cuisine:</strong> " + responseShort.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(responseShort.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + responseShort.user_rating.rating_text + "</p><br>");
+
+                    console.log(response);
+
+                    newDiv.append(resDescription);
+
+                    //adds remove button
+                    removeRestaurant.addClass("col s3 plan-remove");
+                    removeButton.addClass("btn remove red lighten-1");
+                    removeButton.html('Remove<i class="material-icons right">delete</i>')
+                    removeRestaurant.append(removeButton);
+
+                    newDiv.append(removeRestaurant);
+                    rowDiv.append(newDiv);
+                    rowDiv.prepend("<hr><br>");
+
+                    //appends the new restaurant to the description row
+                    $("#description").prepend(rowDiv);
+                    var description = $("#description").html();
+                    localStorage.setItem("results", description)
+
+                    //clears search box
+                    $("#text-box").val("");
+
+                    //adds make a plan button below restaurant
+                    $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+
+                    // store the lat and long data in a variable and store in array for use in google map and call init map
+                    var placeLocation = {
+                        lat: Number(responseShort.location.latitude),
+                        lng: Number(responseShort.location.longitude)
+                    };
+                    uluru.push(placeLocation);
+                    initMap();
+                    $("#map").show();
                 }
-
-                //appends image to the new div
-                imgDiv.append(resImg);
-
-                newDiv.append(imgDiv);
-
-                //adds styling for the description section
-                resDescription.addClass("col s5");
-
-                //adds restaurant information to the descrition div
-                resDescription.append("<h3><a target='_blank' href=" + response.restaurants[0].restaurant.url + " target='_blank'>" + response.restaurants[0].restaurant.name + "</a></h3><p><strong>Location:</strong> " + response.restaurants[0].restaurant.location.address + "</p><p><strong>Cuisine:</strong> " + response.restaurants[0].restaurant.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(response.restaurants[0].restaurant.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + response.restaurants[0].restaurant.user_rating.rating_text + "</p><br>");
-
-                console.log(response);
-
-                newDiv.append(resDescription);
-
-                //adds remove button
-                removeRestaurant.addClass("col s3 plan-remove");
-                removeButton.addClass("btn remove red lighten-1");
-                removeButton.html('Remove<i class="material-icons right">delete</i>')
-                removeRestaurant.append(removeButton);
-
-                newDiv.append(removeRestaurant);
-                rowDiv.append(newDiv);
-                rowDiv.prepend("<hr><br>");
-
-                //appends the new restaurant to the description row
-                $("#description").prepend(rowDiv);
-                var description = $("#description").html();
-                localStorage.setItem("results", description)
-                //clears search box
-                $("#text-box").val("");
-
-                //adds make a plan button below restaurant
-                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
-
-                // store the lat and long data in a variable and store in array for use in google map and call init map
-                var placeLocation = {
-                    lat: Number(response.restaurants[0].restaurant.location.latitude),
-                    lng: Number(response.restaurants[0].restaurant.location.longitude)
-                };
-                uluru.push(placeLocation);
-                initMap();
-                $("#map").show();
             });
 
         });
@@ -220,9 +232,19 @@ $(document).ready(function () {
 
     //removes div of associated restaurant when remove button is clicked
     $(document).on("click", ".remove", function () {
-        $(this).closest('#restaurant').remove();
+
+        //removes restaurant from array that prevents adding duplicates
+        var resIndex = restaurantArr.indexOf($(this).parent().parent().parent().attr("id"));
+
+        if (resIndex !== -1) {
+            restaurantArr.splice(resIndex, 1);
+
+        }
+
+        $(this).closest('.restaurant').remove();
         var description = $("#description").html();
         localStorage.setItem("results", description);
+
         // upon removal of a restaurant this will disable the plan button (and remove the 2nd one) if there are no retaurants
         if ($('#description').html().trim() === "") {
             $('#plan-btn').addClass("disabled");
