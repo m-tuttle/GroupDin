@@ -366,7 +366,7 @@ $(document).ready(function () {
 
                     if (!responseShort.thumb) {
                         resImg.attr("alt", "Generic Food Image");
-                        resImg.attr("src", "http://jumpingrocks.com/files/seo-galleries/gallery-161/thumbs/Cheshire-T-Food-Wine-051-200x200.jpg");
+                        resImg.attr("src", "https://di735fsgy6skn.cloudfront.net/media/image/cache/200x/d/o/xdowntown-st-petersburg-food-tour-tasting.jpg.pagespeed.ic.V9l1MB9YEu.jpg");
                     } else {
                         resImg.attr("alt", "Image of " + responseShort.name);
                         resImg.attr("src", responseShort.thumb);
