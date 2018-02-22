@@ -86,11 +86,14 @@ $(document).ready(function () {
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
         // getting a static google map into the modal section
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length -1;
         var uluruString = ""
         for (i = 0; i < uluru.length; i++) {
-            uluruString += uluru[i].lat + "," + uluru[i].lng + "|"
+            uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
+            labelCount --;
         }
-        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200&markers=" + uluruString;
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString;
         var staticMapImg = $("<img>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
