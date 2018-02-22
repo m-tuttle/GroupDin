@@ -42,6 +42,7 @@ function initMap() {
             labelCount--;
             latlngbounds.extend(uluru[i])
         }
+        console.log(labelCount);
         if (uluru.length > 1) {
             map.fitBounds(latlngbounds);
         }
@@ -420,6 +421,7 @@ $(document).ready(function () {
                     uluru.push(placeLocation);
                     localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
+                    $("#map").show();
                     //clears search box
                     $("#text-box").val("");
                 }
@@ -433,7 +435,7 @@ $(document).ready(function () {
 
         //removes restaurant from array that prevents adding duplicates
         var resIndex = restaurantArr.indexOf($(this).parent().parent().parent().attr("id"));
-
+        console.log(resIndex);
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
