@@ -95,7 +95,7 @@ $(document).ready(function () {
             uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
             labelCount --;
         }
-        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString;
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString + "&key=AIzaSyAuumDe8MOiLBGbQJi6mLMDksIWLdb4DbU";
         var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
@@ -282,7 +282,7 @@ $(document).ready(function () {
                     //adds make a plan button below restaurant
                     $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
                     //adds clear all button
-                    $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
+                    $('.clear-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
 
                     // store the lat and long data in a variable and store in array for use in google map and call init map
                     var placeLocation = {
