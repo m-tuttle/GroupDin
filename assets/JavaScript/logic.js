@@ -49,10 +49,10 @@ $(document).ready(function () {
     if (localStorage.getItem("restaurantArr")) {
         var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
 
-        if (storedRestaurants.length) {
-            restaurantArr = storedRestaurants;
+        if (storedRestaurants.length === null) {
+            restaurantArr.push(storedRestaurants);
         } else {
-            restaurantArr = [storedRestaurants];
+            restaurantArr = storedRestaurants;
         }
     }
     console.log(restaurantArr);
