@@ -101,9 +101,10 @@ li {
         width: 100%;
     }
     #add-restaurant {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
-
-
+    .container {
+        width: 100%;
+    }
     
 }
