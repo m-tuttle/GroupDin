@@ -30,20 +30,7 @@ body {
 }
 
 #header-content {
-    display: block;
-    position: relative;
-}
-
-#header-content::after {
-    content: "";
-    background: #000000;
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
+    background: rgba(73, 68, 68, 0.6);
 }
 
 .modal-content {
