@@ -3,7 +3,11 @@ var guestsArr = [];
 var guestCount = 0;
 
 // variable to store lat and long data of restaurants for display on google map
-var uluru = [];
+if (!localStorage.getItem("uluru")) {
+    var uluru = [];
+} else {
+    var uluru = JSON.parse(localStorage.getItem("uluru"));
+}
 
 // initialize emailjs library
 (function () {
@@ -12,15 +16,20 @@ var uluru = [];
 
 // function for initializing the google map
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: uluru[0]
-    });
-    for (i = 0; i < uluru.length; i++) {
-        var marker = new google.maps.Marker({
-            position: uluru[i],
-            map: map
+    if (uluru.length > 0) {
+        $("#map").show();
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: uluru[0]
         });
+        for (i = 0; i < uluru.length; i++) {
+            var marker = new google.maps.Marker({
+                position: uluru[i],
+                map: map
+            });
+        }
+    } else {
+        return;
     }
 }
 
@@ -33,8 +42,9 @@ $(document).ready(function () {
         $('.make-plan-btn').html("");
     } else {
         $('#plan-btn').removeClass("disabled");
+        
     }
-    
+
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -211,8 +221,8 @@ $(document).ready(function () {
                     lng: Number(response.restaurants[0].restaurant.location.longitude)
                 };
                 uluru.push(placeLocation);
+                localStorage.setItem("uluru", JSON.stringify(uluru));
                 initMap();
-                $("#map").show();
             });
 
         });
