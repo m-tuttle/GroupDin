@@ -46,7 +46,7 @@ function initMap() {
             labelCount--;
             latlngbounds.extend(uluru[i])
         }
-        console.log(labelCount);
+
         if (uluru.length > 1) {
             map.fitBounds(latlngbounds);
         }
@@ -85,7 +85,7 @@ $(document).ready(function () {
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
                 restaurantArr.push(data.id);
-                console.log(restaurantArr);
+
                 localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
                 var rowDiv = $("<div>");
@@ -446,7 +446,7 @@ $(document).ready(function () {
 
         //removes restaurant from array that prevents adding duplicates
         var resIndex = restaurantArr.indexOf($(this).parent().parent().parent().attr("id"));
-        console.log(resIndex);
+
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
