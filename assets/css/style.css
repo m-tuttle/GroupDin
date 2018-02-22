@@ -19,6 +19,7 @@ p {
 h1 {
     margin-bottom: 0;
     font-weight: bolder;
+    color: lightcoral;
 }
 
 body {
@@ -65,15 +66,14 @@ footer {
     margin-bottom: 5px;
 }
 
-@media only screen and (max-width: 590px) {
-
-}
 
 .midtext {
-    color: lightcoral;
+    color: white;
 }
 .din {
-    color: lightcoral;
+    color: white;
+    background: lightcoral;
+    font-weight: normal;
 }
 
 li {
@@ -81,4 +81,43 @@ li {
 }
 .opacity {
     opacity: 0.5;
+}
+.seamless{
+    color: lightcoral;
+}
+
+.openning{
+    background: rgba(0, 0, 0, 0.699);
+}
+#clrAll,
+#cancel{
+    margin-right: 5%;
+}    
+.brand-logo {
+    margin-left: 50px;
+}
+
+/* when screen is 1000px or less Logo is centered w/no margin */
+@media screen and (max-width:1000px) {
+
+    .brand-logo {
+        margin-left: 0;
+    }
+}
+
+/* mobile version of website, when screen is 480px or less */
+@media screen and (max-width: 480px) {
+
+    /* #searchform {
+        width:100%;
+    } */
+    #main-wrapper {
+        width: 100%;
+    }
+    #add-restaurant {
+        margin-bottom: 10px;
+    }
+
+
+    
 }
