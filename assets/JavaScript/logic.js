@@ -61,6 +61,16 @@ $(document).ready(function () {
         var restaurantsClone = $("#description").clone();
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
+        // getting a static google map into the modal section
+        var uluruString = ""
+        for (i = 0; i < uluru.length; i++) {
+            uluruString += uluru[i].lat + "," + uluru[i].lng + "|"
+        }
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200&markers=" + uluruString;
+        var staticMapImg = $("<img>");
+        staticMapImg.attr("src", staticMapSrc);
+        $(".res-display").append(staticMapImg);
+        console.log(encodeURI(staticMapSrc));
     });
 
     // on click handler for the add guest button inside the modal
