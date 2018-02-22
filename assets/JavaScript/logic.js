@@ -272,6 +272,9 @@ $(document).ready(function () {
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
+            uluru.splice(resIndex, 1);
+            localStorage.setItem("uluru", JSON.stringify(uluru));
+            initMap();
         }
 
         $(this).closest('.restaurant').remove();
