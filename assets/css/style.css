@@ -19,6 +19,7 @@ p {
 h1 {
     margin-bottom: 0;
     font-weight: bolder;
+    color: lightcoral;
 }
 
 body {
@@ -67,10 +68,12 @@ footer {
 
 
 .midtext {
-    color: lightcoral;
+    color: white;
 }
 .din {
-    color: lightcoral;
+    color: white;
+    background: lightcoral;
+    font-weight: normal;
 }
 
 li {
@@ -79,6 +82,17 @@ li {
 .opacity {
     opacity: 0.5;
 }
+.seamless{
+    color: lightcoral;
+}
+
+.openning{
+    background: rgba(0, 0, 0, 0.699);
+}
+#clrAll,
+#cancel{
+    margin-right: 5%;
+}    
 .brand-logo {
     margin-left: 50px;
 }
@@ -101,9 +115,10 @@ li {
         width: 100%;
     }
     #add-restaurant {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
-
-
+    .container {
+        width: 100%;
+    }
     
 }
