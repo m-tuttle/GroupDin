@@ -24,7 +24,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">GroupDīn</a>
-                    <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <ul class="right">
                         <li>
                             <a class="waves-effect waves-light modal-trigger" href="#modal2">What is GroupDīn?
@@ -40,11 +40,19 @@
         <main>
             <div class="container">
                 <div class="row">
+                    <br>
                     <header class="col s12 center-align" id="header-content">
+                        <h1>Group
+                            <span class="din">Dīn</span>
+                        </h1>
+                        <h4>Make
+                            <span class="midtext">planning dinner</span> easier on yourself!</h4>
+                        <div class="container col offset-s3 s6 openning">
                         <h1>Group<span class="din">Dīn</span></h1>
-                        <h4>Make <span class="midtext">planning dinner</span> easier on yourself!</h4>
+                        <h4><span class="midtext">Plan dinner </span><span class="seamless">seamlessly.</span></h4>
                         <!-- <h5>Pick your favorite restaurants or places you've been dying to try and add them below.</h5>
                         <h5>When you're ready to send out your list click on the "Make the Plan" button.</h5> -->
+                        </div>
                     </header>
                 </div>
 
@@ -145,21 +153,28 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="modal-action modal-close waves-effect waves-green btn red lighten-1" id="sendEmail">Send Emails
-                <i class="material-icons right">send</i>
-            </button>
+            <form class="row" id="sendForm">
+                <input class="col s6 offset-s2 validate" type="email" placeholder="User Email" id="userEmail-input" required style="color: black">
+                <button class="modal-action waves-effect waves-green btn red lighten-1" type="submit" id="sendEmail">Send Emails
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
         </div>
     </div>
     <!-- end of make the plan modal -->
     <!-- description modal begins here -->
     <div id="modal2" class="modal opacity">
-        <div class="modal-content container">
-            <h3>GroupDīn Description</h3>
+        <div class="modal-content center-align container">
+            <h3><strong>GroupDīn Description</strong></h3>
             <div class="row">
-                <p>GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
+                <p style="font-size: 18px">GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
                     a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again. Every
                     group's got one!</p>
-                    <p>GroupDīn allows you to create a list of restaurants and seamlessly send it out to the
+                <p>GroupDīn allows you to create a list of restaurants and seamlessly send it out to the rest of the group.
+                    Try it out! Pick your favorite restaurants or places you've been dying to try and add them below. When
+                    you're ready to send out your list, click on the "Make the Plan" button.</p>
+                    <br>
+                    <p>The site allows you to create a list of restaurants and seamlessly send it out to the
                     rest of the group. Try it out! Pick your favorite restaurants or places you've been dying to try and
                     add them below. When you're ready to send out your list, click on the "Make the Plan" button.</p>
             </div>
@@ -178,11 +193,22 @@
         <div class="modal-footer">
             <button id="clrAll" class="clear-permanent waves-effect modal-action modal-close waves-green btn red lighten-1">Yes, Clear
             </button>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn red lighten-1">Cancel
+            <a href="#!" id="cancel" class=" modal-action modal-close waves-effect waves-green btn green lighten-1">Cancel
             </a>
         </div>
     </div>
-    <!-- clearAll modal ends here --> 
+    <!-- clearAll modal ends here -->
+    <!-- modal to alert user to input guest emails -->
+    <div id="modal4" class="modal">
+        <div class="modal-content container">
+            <h4>Please enter guest emails above.</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn red lighten-1">Got it!
+            </a>
+        </div>
+    </div>
+    <!-- modal end -->
     <!-- footer begins here -->
     <footer class="page-footer">
         <div class="container">
@@ -193,7 +219,7 @@
                 <!-- <div class="col l4 offset-l2 s12 right-align"> -->
                 <!-- <h5 class="white-text">Links</h5> -->
                 <div class=" col s4 right-align">
-                    
+
                     <a class="grey-text text-lighten-3" target="_blank" href="https://www.zomato.com">zomato | Homepage</a>
                 </div>
             </div>
@@ -214,7 +240,8 @@
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
     <!-- google maps api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEVh5SJnH49-KTiskleG6kgoDrBAz2-VU&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEVh5SJnH49-KTiskleG6kgoDrBAz2-VU&callback=initMap" async
+        defer></script>
     <!-- our JS -->
     <script type="text/javascript" src="assets/JavaScript/logic.js"></script>
 </body>

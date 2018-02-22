@@ -12,7 +12,7 @@ if (!localStorage.getItem("uluru")) {
 
 // initialize emailjs library
 (function () {
-    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd"); 
+    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
 })();
 
 // function for initializing the google map
@@ -24,7 +24,7 @@ function initMap() {
             center: uluru[0]
         });
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var labelCount = uluru.length -1;
+        var labelCount = uluru.length - 1;
         var latlngbounds = new google.maps.LatLngBounds();
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
@@ -89,11 +89,11 @@ $(document).ready(function () {
         $(".res-display").html(restaurantsClone);
         // getting a static google map into the modal section
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var labelCount = uluru.length -1;
+        var labelCount = uluru.length - 1;
         var uluruString = ""
         for (i = 0; i < uluru.length; i++) {
             uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
-            labelCount --;
+            labelCount--;
         }
         var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString + "&key=AIzaSyAuumDe8MOiLBGbQJi6mLMDksIWLdb4DbU";
         var staticMapImg = $("<img class='responsive-img'>");
@@ -138,16 +138,26 @@ $(document).ready(function () {
     });
 
     // click handler to send out plan email
-    $("#sendEmail").one("click", function () {
-        emailjs.send("gmail", "groupdin", {
-            "emails": guestsArr.join(", "),
-            "reply_to": guestsArr.join(", "),
-            "message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),
-            "info": $(".res-display").html()
-        });
+    $("#sendEmail").on("click", function () {
+        if ($("#sendForm")[0].checkValidity()) {
+            event.preventDefault();
+            if (guestsArr.length > 0) {
+                var userEmail =$("#userEmail-input").val().trim()
+                emailjs.send("gmail", "groupdin", {
+                    "userEmail": userEmail,
+                    "emails": guestsArr.join(", "),
+                    "reply_to": guestsArr.join(", ") + ", " + userEmail,
+                    "message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),
+                    "info": $(".res-display").html()
+                });
+                $("#modal1").modal("close");
+            } else {
+                $("#modal4").modal("open");
+            }
+        }
     })
 
-    
+
     //click handler for clear permanent button
     $(document).on('click', '.clear-permanent', function () {
         $('#description').html("");
@@ -160,7 +170,7 @@ $(document).ready(function () {
         $('#map').hide();
         uluru = [];
         restaurantArr = [];
-    });    
+    });
     /////////////////////////////////////////////////////////////////////////
 
     //click handler for adding restaurant
