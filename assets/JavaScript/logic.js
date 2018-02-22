@@ -12,7 +12,7 @@ if (!localStorage.getItem("uluru")) {
 
 // initialize emailjs library
 (function () {
-    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd");
+    emailjs.init("user_XJbwyf2xbHbQPQTvRcRmd"); 
 })();
 
 // function for initializing the google map
@@ -66,6 +66,7 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
 
     });
 
@@ -253,6 +254,7 @@ $(document).ready(function () {
                     uluru.push(placeLocation);
                     initMap();
                     $("#map").show();
+
                 }
 
                 //clears search box
