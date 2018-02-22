@@ -99,8 +99,11 @@ $(document).ready(function () {
     $(document).on("click", "#add-restaurant", function (event) {
 
         //prevents page reload
+        if ($("#searchForm")[0].checkValidity()) {
         event.preventDefault();
-
+        } else {
+            return
+        }
         //search variables
         var location = $("#location").val().trim();
         var restaurant = $("#text-box").val().trim();
