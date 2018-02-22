@@ -55,6 +55,7 @@ $(document).ready(function () {
         $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
         $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
         $('#plan-btn').removeClass("disabled");
+        $('#map').show();
 
     }
 
@@ -87,12 +88,15 @@ $(document).ready(function () {
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
         // getting a static google map into the modal section
+        var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var labelCount = uluru.length -1;
         var uluruString = ""
         for (i = 0; i < uluru.length; i++) {
-            uluruString += uluru[i].lat + "," + uluru[i].lng + "|"
+            uluruString += "&markers=label:" + labels.charAt(labelCount) + "|" + uluru[i].lat + "," + uluru[i].lng;
+            labelCount --;
         }
-        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200&markers=" + uluruString;
-        var staticMapImg = $("<img>");
+        var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString + "&key=AIzaSyAuumDe8MOiLBGbQJi6mLMDksIWLdb4DbU";
+        var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
         console.log(encodeURI(staticMapSrc));
@@ -153,7 +157,9 @@ $(document).ready(function () {
         var location = localStorage.getItem('favLocal');
         localStorage.clear();
         localStorage.setItem('favLocal', location);
-        $('#map').remove();
+        $('#map').hide();
+        uluru = [];
+        restaurantArr = [];
     });    
     /////////////////////////////////////////////////////////////////////////
 
