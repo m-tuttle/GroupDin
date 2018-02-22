@@ -30,6 +30,10 @@ function initMap() {
         });
     }
     if (uluru.length > 0) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru[0]
+        });
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
         var latlngbounds = new google.maps.LatLngBounds();
@@ -76,8 +80,13 @@ $(document).ready(function () {
     database.ref().once("child_added", function (snapshot) {
         if (snapshot.hasChild(FBQuery)) {
             uluru = [];
+            restaurantArr = [];
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
+
+                restaurantArr.push(data.id);
+                console.log(restaurantArr);
+                localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
                 var rowDiv = $("<div>");
                 var newDiv = $("<div>");
