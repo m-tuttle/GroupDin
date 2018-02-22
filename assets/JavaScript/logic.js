@@ -14,7 +14,6 @@ if (searchQueryID.get("plan") === null) {
 } else {
     FBQuery = searchQueryID.get("plan");
 }
-console.log(FBQuery);
 
 // initialize emailjs library
 (function () {
@@ -74,13 +73,10 @@ var database = firebase.database();
 $(document).ready(function () {
 
     database.ref().once("child_added", function (snapshot) {
-        console.log(snapshot.val());
         if (snapshot.hasChild(FBQuery)) {
             uluru = [];
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
-                console.log(data);
-
 
                 var rowDiv = $("<div>");
                 var newDiv = $("<div>");
@@ -141,8 +137,6 @@ $(document).ready(function () {
                     lng: Number(data.long)
                 };
                 uluru.push(placeLocation);
-                console.log(placeLocation);
-
             });
 
         } else {
@@ -168,7 +162,6 @@ $(document).ready(function () {
                         restaurantArr = storedRestaurants;
                     }
                 }
-                console.log(restaurantArr);
             }
         }
     }).then(function () {
@@ -205,14 +198,12 @@ $(document).ready(function () {
         var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
-        console.log(encodeURI(staticMapSrc));
 
         var newPlan = database.ref("/plans");
         var pushed = newPlan.push(
             firebaseRestaurants
         );
         var planID = pushed.key;
-        console.log(planID);
         $("#plan-url").attr("href", "https://m-tuttle.github.io/Project-1/?plan=" + planID);
         $("#plan-url").text("https://m-tuttle.github.io/Project-1/?plan=" + planID);
     });
@@ -257,7 +248,7 @@ $(document).ready(function () {
         if ($("#sendForm")[0].checkValidity()) {
             event.preventDefault();
             if (guestsArr.length > 0) {
-                var userEmail =$("#userEmail-input").val().trim()
+                var userEmail = $("#userEmail-input").val().trim()
                 emailjs.send("gmail", "groupdin", {
                     "userEmail": userEmail,
                     "emails": guestsArr.join(", "),
@@ -305,7 +296,6 @@ $(document).ready(function () {
         var queryURL = "https://developers.zomato.com/api/v2.1/cities?q=" + locationFix;
         localStorage.setItem("favLocal", location)
         $('#plan-btn').removeClass("disabled");
-        console.log(queryURL);
 
         //calls to zomato API
         $.ajax({
@@ -332,7 +322,6 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
 
-                console.log(response);
                 var responseShort = response.restaurants[0].restaurant;
 
                 //prevents duplicate restaurant additions
@@ -352,7 +341,7 @@ $(document).ready(function () {
                     };
 
                     firebaseRestaurants.push(FBRes);
-                    console.log(firebaseRestaurants);
+
                     restaurantArr.push(responseShort.id);
                     localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
@@ -394,8 +383,6 @@ $(document).ready(function () {
                     //adds restaurant information to the descrition div
                     resDescription.append("<h3><a target='_blank' href=" + responseShort.url + " target='_blank'>" + responseShort.name + "</a></h3><p><strong>Location:</strong> " + responseShort.location.address + "</p><p><strong>Cuisine:</strong> " + responseShort.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(responseShort.average_cost_for_two) / 2) + "</p><p> <strong>User rating:</strong> " + responseShort.user_rating.rating_text + "</p><br>");
 
-                    console.log(response);
-
                     newDiv.append(resDescription);
 
                     //adds remove button
@@ -406,6 +393,7 @@ $(document).ready(function () {
 
                     newDiv.append(removeRestaurant);
 
+                    //small map option
                     // var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=13&markers=" + Number(responseShort.location.latitude) + "," + Number(responseShort.location.longitude);
                     // var staticMapImg = $("<img>");
                     // staticMapImg.attr("src", staticMapSrc);
