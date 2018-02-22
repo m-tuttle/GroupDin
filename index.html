@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/Din.ico" />
-    
+
 </head>
 
 <body>
@@ -24,6 +24,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">GroupDīn</a>
+<<<<<<< HEAD
                     <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
                     <ul class="right">
                         <li>
@@ -31,6 +32,15 @@
                             </a>
                         </li>
                     </ul>
+=======
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <ul class="right">
+                            <li>
+                                <a class="waves-effect waves-light modal-trigger" href="#modal2">What is GroupDīn?
+                                </a>
+                            </li>
+                        </ul>
+>>>>>>> ee23edf69fae0f6d5bd5925279fc1438dde3ab77
                 </div>
             </nav>
         </div>
@@ -45,57 +55,72 @@
                         <h1>Group
                             <span class="din">Dīn</span>
                         </h1>
-                        <h4>Make
-                            <span class="midtext">planning dinner</span> easier on yourself!</h4>
-                        <div class="container col offset-s3 s6 openning">
-                        <h1>Group<span class="din">Dīn</span></h1>
-                        <h4><span class="midtext">Plan dinner </span><span class="seamless">seamlessly.</span></h4>
+                        <h4>
+                            <span class="midtext">Plan dinner </span>
+                            <span class="seamless">seamlessly.</span>
+                        </h4>
                         <!-- <h5>Pick your favorite restaurants or places you've been dying to try and add them below.</h5>
                         <h5>When you're ready to send out your list click on the "Make the Plan" button.</h5> -->
-                        </div>
-                    </header>
                 </div>
+                </header>
+            </div>
 
-                <div class="row">
-                    <form id="searchForm">
-                        <div class="input-field col s12 m3 ">
-                            <i class="material-icons prefix">add_location</i>
-                            <input type="text" placeholder="City" id="location" class="validate" required>
-                        </div>
-                        <div class="input-field col s12 m9">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" placeholder="Search for any restaurant" id="text-box" class="validate">
-                        </div>
-                        <button class="btn col s12 m3 red waves-effect waves-red lighten-1" type="submit" id="add-restaurant">Add Restaurant
-                            <i class="material-icons right">restaurant</i>
-                        </button>
-                        <div class="center-align col offset-s2 col s2">
-                            <div class="preloader-wrapper active">
-                                <div class="spinner-layer spinner-red-only">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
+            <div class="row">
+                <form id="searchForm">
+                    <div class="input-field col s12 m3 ">
+                        <i class="material-icons prefix">add_location</i>
+                        <input type="text" placeholder="City" id="location" class="validate" required>
+                    </div>
+                    <div class="input-field col s12 m9">
+                        <i class="material-icons prefix">search</i>
+                        <input type="text" placeholder="Search for any restaurant" id="text-box" class="validate">
+                    </div>
+                    <button class="btn col s12 m3 red waves-effect waves-red lighten-1" type="submit" id="add-restaurant">Add Restaurant
+                        <i class="material-icons right">restaurant</i>
+                    </button>
+                    <div class="center-align col offset-s2 col s2">
+                        <div class="preloader-wrapper active">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <a class="col waves-effect waves-red btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan
                             <i class="material-icons right">assignment</i>
                         </a>
                     </form>
                 </div>
+=======
+                    </div>
+                    <a class="col offset-m2 m3 s12 waves-effect waves-red btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan
+                        <i class="material-icons right">assignment</i>
+                    </a>
+                </form>
+            </div>
+>>>>>>> ee23edf69fae0f6d5bd5925279fc1438dde3ab77
 
-                <!-- restaurant picture and information gets populated here -->
-                <div class="row" id="description">
+            <!-- restaurant picture and information gets populated here -->
+            <div class="row" id="description">
+            </div>
+            <!-- google map display goes here -->
+            <div class="row" id="map">
+            </div>
+            <br>
+            <!-- Modal Trigger -->
+            <div class="row">
+                <div class=" col s12 m3 make-plan-btn">
                 </div>
-                <!-- google map display goes here -->
-                <div class="row" id="map">
+                <div class=" col s12 offset-m6 m3 clear-btn">
                 </div>
+<<<<<<< HEAD
                 <br>
                 <!-- Modal Trigger -->
                 <div class="row">
@@ -105,14 +130,22 @@
                     </div>
                 </div>
                 <br>
+=======
+>>>>>>> ee23edf69fae0f6d5bd5925279fc1438dde3ab77
             </div>
-            <!-- end of main page body content container -->
-        </main>
+            <br>
+    </div>
+    <!-- end of main page body content container -->
+    </main>
     </div>
     <!-- make the plan modal begins here-->
     <div id="modal1" class="modal">
         <div class="modal-content container">
             <h4>Ready to share these restaurants?</h4>
+            <p>Share this link:
+                <a id="plan-url"></a>
+            </p>
+            <p>And/Or</p>
             <p>Add the names and emails of the guests you want to invite</p>
             <form id="guestForm">
                 <div class="row">
@@ -165,7 +198,9 @@
     <!-- description modal begins here -->
     <div id="modal2" class="modal opacity">
         <div class="modal-content center-align container">
-            <h3><strong>GroupDīn Description</strong></h3>
+            <h3>
+                <strong>GroupDīn Description</strong>
+            </h3>
             <div class="row">
                 <p style="font-size: 18px">GroupDīn was made for group planners. You know, the one in your group of friends whose job it is to pick
                     a restaurant and make reservations, otherwise you'd end up staying in and ordering pizza...again. Every
@@ -173,10 +208,10 @@
                 <p>GroupDīn allows you to create a list of restaurants and seamlessly send it out to the rest of the group.
                     Try it out! Pick your favorite restaurants or places you've been dying to try and add them below. When
                     you're ready to send out your list, click on the "Make the Plan" button.</p>
-                    <br>
-                    <p>The site allows you to create a list of restaurants and seamlessly send it out to the
-                    rest of the group. Try it out! Pick your favorite restaurants or places you've been dying to try and
-                    add them below. When you're ready to send out your list, click on the "Make the Plan" button.</p>
+                <br>
+                <p>The site allows you to create a list of restaurants and seamlessly send it out to the rest of the group.
+                    Try it out! Pick your favorite restaurants or places you've been dying to try and add them below. When
+                    you're ready to send out your list, click on the "Make the Plan" button.</p>
             </div>
         </div>
         <div class="modal-footer">
@@ -240,8 +275,7 @@
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
     <!-- google maps api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEVh5SJnH49-KTiskleG6kgoDrBAz2-VU&callback=initMap" async
-        defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEVh5SJnH49-KTiskleG6kgoDrBAz2-VU" async defer></script>
     <!-- our JS -->
     <script type="text/javascript" src="assets/JavaScript/logic.js"></script>
 </body>
