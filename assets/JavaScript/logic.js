@@ -55,6 +55,7 @@ $(document).ready(function () {
         $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
         $('.clear-btn').html('<a class= "waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
         $('#plan-btn').removeClass("disabled");
+        $('#map').show();
 
     }
 
@@ -95,7 +96,7 @@ $(document).ready(function () {
             labelCount --;
         }
         var staticMapSrc = "https://maps.googleapis.com/maps/api/staticmap?size=600x200" + uluruString;
-        var staticMapImg = $("<img>");
+        var staticMapImg = $("<img class='responsive-img'>");
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
         console.log(encodeURI(staticMapSrc));
@@ -156,7 +157,9 @@ $(document).ready(function () {
         var location = localStorage.getItem('favLocal');
         localStorage.clear();
         localStorage.setItem('favLocal', location);
-        $('#map').remove();
+        $('#map').hide();
+        uluru = [];
+        restaurantArr = [];
     });    
     /////////////////////////////////////////////////////////////////////////
 
