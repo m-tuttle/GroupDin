@@ -23,10 +23,12 @@ function initMap() {
             zoom: 12,
             center: uluru[0]
         });
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
-                map: map
+                map: map,
+                // label: label[i],
             });
         }
     } else {
@@ -251,6 +253,7 @@ $(document).ready(function () {
                         lng: Number(responseShort.location.longitude)
                     };
                     uluru.push(placeLocation);
+                    localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
                     $("#map").show();
                 }
