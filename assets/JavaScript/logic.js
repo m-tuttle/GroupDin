@@ -30,6 +30,10 @@ function initMap() {
         });
     }
     if (uluru.length > 0) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru[0]
+        });
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
         var latlngbounds = new google.maps.LatLngBounds();
@@ -42,6 +46,7 @@ function initMap() {
             labelCount--;
             latlngbounds.extend(uluru[i])
         }
+        console.log(labelCount);
         if (uluru.length > 1) {
             map.fitBounds(latlngbounds);
         }
@@ -75,8 +80,13 @@ $(document).ready(function () {
     database.ref().once("child_added", function (snapshot) {
         if (snapshot.hasChild(FBQuery)) {
             uluru = [];
+            restaurantArr = [];
+            localStorage.clear("restaurantArr");
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
+                restaurantArr.push(data.id);
+                console.log(restaurantArr);
+                localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
                 var rowDiv = $("<div>");
                 var newDiv = $("<div>");
@@ -130,6 +140,8 @@ $(document).ready(function () {
 
                 //adds make a plan button below restaurant
                 $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+
+                $('.clear-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="clearAll" href="#modal3">Clear All<i class="material-icons right">delete_forever</i></a>');
 
                 // store the lat and long data in a variable and store in array for use in google map and call init map
                 var placeLocation = {
@@ -366,7 +378,7 @@ $(document).ready(function () {
 
                     if (!responseShort.thumb) {
                         resImg.attr("alt", "Generic Food Image");
-                        resImg.attr("src", "http://jumpingrocks.com/files/seo-galleries/gallery-161/thumbs/Cheshire-T-Food-Wine-051-200x200.jpg");
+                        resImg.attr("src", "https://di735fsgy6skn.cloudfront.net/media/image/cache/200x/d/o/xdowntown-st-petersburg-food-tour-tasting.jpg.pagespeed.ic.V9l1MB9YEu.jpg");
                     } else {
                         resImg.attr("alt", "Image of " + responseShort.name);
                         resImg.attr("src", responseShort.thumb);
@@ -420,6 +432,7 @@ $(document).ready(function () {
                     uluru.push(placeLocation);
                     localStorage.setItem("uluru", JSON.stringify(uluru));
                     initMap();
+                    $("#map").show();
                     //clears search box
                     $("#text-box").val("");
                 }
@@ -433,7 +446,7 @@ $(document).ready(function () {
 
         //removes restaurant from array that prevents adding duplicates
         var resIndex = restaurantArr.indexOf($(this).parent().parent().parent().attr("id"));
-
+        console.log(resIndex);
         if (resIndex !== -1) {
             restaurantArr.splice(resIndex, 1);
             localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
