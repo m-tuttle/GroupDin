@@ -55,7 +55,12 @@ $(document).ready(function () {
 
     // on click handler for the add guest button inside the modal
     $('#add-guest-btn').on('click', function () {
-        event.preventDefault();
+        //prevents page reload and validates input
+        if ($("#guestForm")[0].checkValidity()) {
+            event.preventDefault();
+        } else {
+            return
+        }
         var name = $('#name-input').val().trim();
         var email = $('#email-input').val().trim();
         var divContent = $(".guest-display").html();
@@ -98,9 +103,9 @@ $(document).ready(function () {
     //click handler for adding restaurant
     $(document).on("click", "#add-restaurant", function (event) {
 
-        //prevents page reload
+        //prevents page reload and validates input
         if ($("#searchForm")[0].checkValidity()) {
-        event.preventDefault();
+            event.preventDefault();
         } else {
             return
         }
