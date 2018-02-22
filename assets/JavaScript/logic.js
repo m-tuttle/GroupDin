@@ -2,13 +2,19 @@
 var guestsArr = [];
 var restaurantArr = [];
 var guestCount = 0;
+var resCount;
+var firebaseRestaurants = [];
+var searchQueryID = (new URL(document.location)).searchParams;
+var FBQuery;
+var uluru;
+var map;
 
-// variable to store lat and long data of restaurants for display on google map
-if (!localStorage.getItem("uluru")) {
-    var uluru = [];
+if (searchQueryID.get("plan") === null) {
+    FBQuery = "xxxxxxx";
 } else {
-    var uluru = JSON.parse(localStorage.getItem("uluru"));
+    FBQuery = searchQueryID.get("plan");
 }
+console.log(FBQuery);
 
 // initialize emailjs library
 (function () {
@@ -17,12 +23,14 @@ if (!localStorage.getItem("uluru")) {
 
 // function for initializing the google map
 function initMap() {
-    if (uluru.length > 0) {
+    if (!map && uluru.length) {
         $("#map").show();
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: uluru[0]
         });
+    }
+    if (uluru.length > 0) {
         for (i = 0; i < uluru.length; i++) {
             var marker = new google.maps.Marker({
                 position: uluru[i],
@@ -34,29 +42,127 @@ function initMap() {
     }
 }
 
+// variable to store lat and long data of restaurants for display on google map
+if (!localStorage.getItem("uluru")) {
+    uluru = [];
+} else {
+    uluru = JSON.parse(localStorage.getItem("uluru"));
+}
+
+//initializing firebase
+var config = {
+    apiKey: "AIzaSyD0uy5Vy-ihUzdezogRbIkDNBPkB5OlZ8g",
+    authDomain: "groupdin-da46a.firebaseapp.com",
+    databaseURL: "https://groupdin-da46a.firebaseio.com",
+    projectId: "groupdin-da46a",
+    storageBucket: "groupdin-da46a.appspot.com",
+    messagingSenderId: "636669982330"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
 $(document).ready(function () {
-    // locally store previously displayed search results
-    $('#description').html(localStorage.getItem('results'));
-    // disable plan button (and remove 2nd plan button) if there are no restaurants displayed
-    if ($('#description').html().trim() === "") {
-        $('#plan-btn').addClass("disabled");
-        $('.make-plan-btn').html("");
-    } else {
-        $('#plan-btn').removeClass("disabled");
+    debugger;
+    database.ref().once("child_added", function (snapshot) {
+        console.log(snapshot.val());
+        if (snapshot.hasChild(FBQuery)) {
+            snapshot.child(FBQuery).forEach(function (childSnapshot) {
+                var data = childSnapshot.val();
+                console.log(data);
 
-    }
+                var rowDiv = $("<div>");
+                var newDiv = $("<div>");
+                var imgDiv = $("<div>");
+                var resImg = $("<img>");
+                var resDescription = $("<div>");
+                var removeRestaurant = $("<div>");
+                var removeButton = $("<button>");
 
-    if (localStorage.getItem("restaurantArr")) {
-        var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
+                rowDiv.addClass("row restaurant");
+                rowDiv.attr("id", data.id);
+                newDiv.addClass("restaurant-container");
 
-        if (storedRestaurants.length === null) {
-            restaurantArr.push(storedRestaurants);
+                //adds materialize styling
+                imgDiv.addClass("col s4");
+
+                //adds styling and the src attribute to the image
+                resImg.addClass("responsive-img");
+
+                resImg.attr("alt", "Image of " + data.name);
+                resImg.attr("src", data.thumbnail);
+
+                //appends image to the new div
+                imgDiv.append(resImg);
+
+                newDiv.append(imgDiv);
+
+                //adds styling for the description section
+                resDescription.addClass("col s5");
+
+                //adds restaurant information to the descrition div
+                resDescription.append("<h3><a target='_blank' href=" + data.url + " target='_blank'>" + data.name + "</a></h3><p><strong>Location:</strong> " + data.address + "</p><p><strong>Cuisine:</strong> " + data.cuisines + "</p><p><strong> Average cost per person:</strong> $" + Math.ceil(parseInt(data.cost) / 2) + "</p><p> <strong>User rating:</strong> " + data.rating + "</p><br>");
+
+
+                newDiv.append(resDescription);
+
+                //adds remove button
+                removeRestaurant.addClass("col s3 plan-remove");
+                removeButton.addClass("btn remove red lighten-1");
+                removeButton.html('Remove<i class="material-icons right">delete</i>')
+                removeRestaurant.append(removeButton);
+
+                newDiv.append(removeRestaurant);
+                rowDiv.append(newDiv);
+                rowDiv.prepend("<hr><br>");
+
+                //appends the new restaurant to the description row
+                $("#description").prepend(rowDiv);
+                var description = $("#description").html();
+                localStorage.setItem("results", description)
+
+                //adds make a plan button below restaurant
+                $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
+
+                // store the lat and long data in a variable and store in array for use in google map and call init map
+                var placeLocation = {
+                    lat: Number(data.lat),
+                    lng: Number(data.long)
+                };
+                uluru.push(placeLocation);
+                console.log(placeLocation);
+
+            });
+
         } else {
-            restaurantArr = storedRestaurants;
-        }
-    }
-    console.log(restaurantArr);
 
+            // locally store previously displayed search results
+            $('#description').html(localStorage.getItem('results'));
+            // disable plan button (and remove 2nd plan button) if there are no restaurants displayed
+            if ($('#description').html().trim() === "") {
+                $('#plan-btn').addClass("disabled");
+                $('.make-plan-btn').html("");
+            } else {
+                $('#plan-btn').removeClass("disabled");
+
+            }
+
+            if (localStorage.getItem("restaurantArr")) {
+                var storedRestaurants = JSON.parse(localStorage.getItem("restaurantArr"));
+
+                if (storedRestaurants.length === null) {
+                    restaurantArr.push(storedRestaurants);
+                } else {
+                    restaurantArr = storedRestaurants;
+                }
+            }
+            console.log(restaurantArr);
+        }
+    }).then(function () {
+        initMap();
+    });
+
+    //
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -83,6 +189,15 @@ $(document).ready(function () {
         staticMapImg.attr("src", staticMapSrc);
         $(".res-display").append(staticMapImg);
         console.log(encodeURI(staticMapSrc));
+
+        var newPlan = database.ref("/plans");
+        var pushed = newPlan.push(
+            firebaseRestaurants
+        );
+        var planID = pushed.key;
+        console.log(planID);
+        $("#plan-url").attr("href", "https://m-tuttle.github.io/Project-1/?plan=" + planID);
+        $("#plan-url").text("https://m-tuttle.github.io/Project-1/?plan=" + planID);
     });
 
     // on click handler for the add guest button inside the modal
@@ -182,6 +297,21 @@ $(document).ready(function () {
                 //prevents duplicate restaurant additions
                 if (!restaurantArr.includes(responseShort.id)) {
 
+                    var FBRes = {
+                        thumbnail: responseShort.thumb,
+                        name: responseShort.name,
+                        url: responseShort.url,
+                        address: responseShort.location.address,
+                        cuisines: responseShort.cuisines,
+                        cost: responseShort.average_cost_for_two,
+                        rating: responseShort.user_rating.rating_text,
+                        id: responseShort.id,
+                        lat: responseShort.location.latitude,
+                        long: responseShort.location.longitude
+                    };
+
+                    firebaseRestaurants.push(FBRes);
+                    console.log(firebaseRestaurants);
                     restaurantArr.push(responseShort.id);
                     localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
@@ -252,7 +382,6 @@ $(document).ready(function () {
                     };
                     uluru.push(placeLocation);
                     initMap();
-                    $("#map").show();
                 }
 
                 //clears search box
