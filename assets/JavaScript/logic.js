@@ -220,9 +220,6 @@ $(document).ready(function () {
                     var description = $("#description").html();
                     localStorage.setItem("results", description)
 
-                    //clears search box
-                    $("#text-box").val("");
-
                     //adds make a plan button below restaurant
                     $('.make-plan-btn').html('<a class="waves-effect waves-light btn modal-trigger red lighten-1" id="plan-btn" href="#modal1">Make the Plan<i class="material-icons right">assignment</i></a>');
 
@@ -235,6 +232,10 @@ $(document).ready(function () {
                     initMap();
                     $("#map").show();
                 }
+
+                //clears search box
+                $("#text-box").val("");
+
             });
 
         });
