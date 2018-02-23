@@ -22,15 +22,15 @@
         <!-- header for the page with a title -->
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">GroupDīn</a>
-                    <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
-                    <ul class="right">
-                        <li>
-                            <a class="waves-effect waves-light modal-trigger" href="#modal2">What is GroupDīn?
+                <div class="conatainer nav-wrapper">
+                    <div class="row logoRow">
+                        <a href="#" class="col s3 logo" id="logo"><h4>GroupDīn</h4></a>
+                        <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+                        <div class="right-align">
+                            <a class="waves-effect waves-light modal-trigger" id="whatIs" href="#modal2">What is GroupDīn?
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -42,8 +42,7 @@
                 <div class="row">
                     <br>
                     <header class="col s12 center-align" id="header-content">
-                        <h1>Group
-                            <span class="din">Dīn</span>
+                        <h1>Group<span class="din">Dīn</span>
                         </h1>
                         <h4>
                             <span class="midtext">Plan dinner </span>
@@ -111,17 +110,17 @@
     <!-- make the plan modal begins here-->
     <div id="modal1" class="modal">
         <div class="modal-content container">
-            <h4>Ready to share these restaurants?</h4>
-            <p>Share this link:
+            <h4>Ready to share these restaurants? You can:</h4>
+            <p class="modalP">Share this link:
                 <a id="plan-url"></a>
             </p>
-            <p>And/Or</p>
-            <p>Add the emails of the guests you want to invite</p>
+            <h4>and/or:</h4>
+            <p class="modalP">Add the emails of the guests you want to invite, enter your email below, and click on the "Send Emails" button</p>
             <form id="guestForm">
                 <div class="row">
                     <div class="col s12">
                         <div class="input-field">
-                            <label for="email-input">Email</label>
+                            <label for="email-input">Guest Email(s)</label>
                             <input type="email" placeholder="JohnSmith@example.com" id="email-input" required class="validate">
                         </div>
                     </div>
@@ -139,7 +138,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="icon_prefix2" class="materialize-textarea">Hi, there! I found some great restaurants on GroupDīn. Please reply back with your selection. Thanks.</textarea>
+                                <textarea id="icon_prefix2" class="materialize-textarea">Hey! Check out these restaurants I found on GroupDīn. Let me know which one looks best to you. Cheers!</textarea>
                                 <label for="icon_prefix2">Message</label>
                             </div>
                         </div>
@@ -150,12 +149,17 @@
             </div>
         </div>
         <div class="modal-footer">
-            <form class="row" id="sendForm">
-                <input class="col s6 offset-s2 validate" type="email" placeholder="User Email" id="userEmail-input" required style="color: black">
-                <button class="modal-action waves-effect waves-green btn red lighten-1" type="submit" id="sendEmail">Send Emails
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
+            <div class="container">
+                <form class="row" id="sendForm">
+                    <div class="input-field">
+                        <label class="col offset-s1" for="userEmail-input">Your email</label>
+                        <input class="col offset-s1 s6 validate" type="email" placeholder="JohnSmith@example.com" id="userEmail-input" required style="color: black">
+                    </div>
+                    <button class="modal-action waves-effect waves-green btn red lighten-1" type="submit" id="sendEmail">Send Emails
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- end of make the plan modal -->
@@ -165,12 +169,13 @@
             <h1 style="font-size:30px">Group<span class="din">Dīn</span>
             </h1> 
             <hr>
+            <br>
             <div class="row" style="text-align:justify">
-                <p style="font-size:16px">Group<span class="din">Dīn</span> was made for group planners. The one in your group of friends whose job is to pick a restaurant
+                <p style="font-size:16px">Group<span class="din">Dīn</span> was made for group planners. The one in your group of friends whose job it is to pick a restaurant
                     and make a reservation, otherwise you'd end up staying in and ordering pizza... again. Every group's
                     got one!</p>
                 <br>
-                <p>Group<span class="din">Dīn</span> allows you to create a list of restaurants and seamlessly send it out to the rest of the group.
+                <p>The site allows you to create a list of restaurants and seamlessly send it out to the rest of the group.
                     Try it out! Pick your favorite restaurants or places you've been dying to try and add them below. When
                     you're ready to send out your list, click on the "Make the Plan" button.</p>
             </div>

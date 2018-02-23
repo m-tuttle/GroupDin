@@ -16,6 +16,11 @@ p {
     margin-bottom: 3px;
 }
 
+.modalP {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 h1 {
     margin-bottom: 0;
     font-weight: bolder;
@@ -62,7 +67,7 @@ footer {
 
 #map {
     display: none;
-    height: 200px;
+    height: 350px;
     margin-bottom: 5px;
 }
 
@@ -93,8 +98,12 @@ li {
 #cancel{
     margin-right: 5%;
 }    
-.brand-logo {
-    margin-left: 50px;
+.logo{
+    font-weight: 200;
+    margin-left: 20%;
+}
+#whatIs{
+    margin-right: 3%;
 }
 
 /* when screen is 1000px or less Logo is centered w/no margin */
@@ -113,9 +122,5 @@ li {
     }
     #add-restaurant {
         margin-bottom: 20px;
-    }
-    .brand-logo {
-        text-align: left;
-        margin-left: 0;
     }
 }
