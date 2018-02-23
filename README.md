@@ -10,7 +10,7 @@ This web application helps a user gather information on a list of restaurants an
 ![Website Mobile](assets/images/mobile.jpg)
 
 ### Website User Flow
-![Website Gif](assets/images/gif_1.gif)
+![Website Gif](assets/images/gif_1.gif)  ![Website Gif 2](assets/images/gif_2.gif) ![Website Gif 3](assets/images/gif_3.gif)
 
 ### Technologies Used
 * HTML, CSS, JavaScript, jQuery
