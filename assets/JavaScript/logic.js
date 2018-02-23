@@ -85,6 +85,21 @@ $(document).ready(function () {
             localStorage.clear("restaurantArr");
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
+
+                var FBResNew = {
+                    thumbnail: resPic,
+                    name: responseShort.name,
+                    url: responseShort.url,
+                    address: responseShort.location.address,
+                    cuisines: responseShort.cuisines,
+                    cost: responseShort.average_cost_for_two,
+                    rating: responseShort.user_rating.rating_text,
+                    id: responseShort.id,
+                    lat: responseShort.location.latitude,
+                    long: responseShort.location.longitude
+                };
+
+                firebaseRestaurants.push(FBResNew);
                 restaurantArr.push(data.id);
 
                 localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
