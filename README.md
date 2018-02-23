@@ -9,9 +9,6 @@ This web application helps a user gather information on a list of restaurants an
 ### Website Mobile
 ![Website Mobile](assets/images/mobile.jpg)
 
-### Website User Flow
-![Website Gif](assets/images/gif_1.gif)
-
 ### Technologies Used
 * HTML, CSS, JavaScript, jQuery
 * Materialize CSS Framework
