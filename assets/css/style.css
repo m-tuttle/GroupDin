@@ -106,7 +106,7 @@ li {
 } */
 
 /* mobile version of website, when screen is 480px or less */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
 
     #main-wrapper {
         width: 100%;
@@ -114,5 +114,8 @@ li {
     #add-restaurant {
         margin-bottom: 20px;
     }
-    
+    .brand-logo {
+        text-align: left;
+        margin-left: 0;
+    }
 }

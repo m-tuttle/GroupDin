@@ -222,6 +222,7 @@ $(document).ready(function () {
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
 
+
         // getting a static google map into the modal section
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
@@ -242,6 +243,7 @@ $(document).ready(function () {
         var planID = pushed.key;
         $("#plan-url").attr("href", "https://m-tuttle.github.io/Project-1/?plan=" + planID);
         $("#plan-url").text("https://m-tuttle.github.io/Project-1/?plan=" + planID);
+        
     });
 
     // on click handler for the add guest button inside the modal
