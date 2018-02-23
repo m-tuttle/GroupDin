@@ -335,12 +335,18 @@ $(document).ready(function () {
             }).then(function (response) {
 
                 var responseShort = response.restaurants[0].restaurant;
+                var resPic;
 
+                if (!responseShort.thumb) {
+                    resPic = "https://di735fsgy6skn.cloudfront.net/media/image/cache/200x/d/o/xdowntown-st-petersburg-food-tour-tasting.jpg.pagespeed.ic.V9l1MB9YEu.jpg";
+                } else {
+                    resPic = responseShort.thumb;
+                }
                 //prevents duplicate restaurant additions
                 if (!restaurantArr.includes(responseShort.id)) {
 
                     var FBRes = {
-                        thumbnail: responseShort.thumb,
+                        thumbnail: resPic,
                         name: responseShort.name,
                         url: responseShort.url,
                         address: responseShort.location.address,
@@ -378,10 +384,10 @@ $(document).ready(function () {
 
                     if (!responseShort.thumb) {
                         resImg.attr("alt", "Generic Food Image");
-                        resImg.attr("src", "https://di735fsgy6skn.cloudfront.net/media/image/cache/200x/d/o/xdowntown-st-petersburg-food-tour-tasting.jpg.pagespeed.ic.V9l1MB9YEu.jpg");
+                        resImg.attr("src", resPic);
                     } else {
                         resImg.attr("alt", "Image of " + responseShort.name);
-                        resImg.attr("src", responseShort.thumb);
+                        resImg.attr("src", resPic);
                     }
 
                     //appends image to the new div
