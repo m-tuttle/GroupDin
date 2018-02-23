@@ -1,4 +1,4 @@
-// variable to store the emails of the guests entered by the user and count users
+// initialize variables
 var guestsArr = [];
 var restaurantArr = [];
 var guestCount = 0;
@@ -34,6 +34,7 @@ function initMap() {
             zoom: 15,
             center: uluru[0]
         });
+        // sets up markers on the map with labels for each restaurant
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
         var latlngbounds = new google.maps.LatLngBounds();
@@ -46,7 +47,7 @@ function initMap() {
             labelCount--;
             latlngbounds.extend(uluru[i])
         }
-
+        // positions the map center and zoom based on the markers
         if (uluru.length > 1) {
             map.fitBounds(latlngbounds);
         }
@@ -180,7 +181,6 @@ $(document).ready(function () {
         initMap();
     });
 
-    //
     //locally store last used location
     $('#location').val(localStorage.getItem('favLocal'));
     //progress bar hide
@@ -198,6 +198,7 @@ $(document).ready(function () {
         var restaurantsClone = $("#description").clone();
         restaurantsClone.find(".plan-remove").remove();
         $(".res-display").html(restaurantsClone);
+
         // getting a static google map into the modal section
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
@@ -228,7 +229,6 @@ $(document).ready(function () {
         } else {
             return
         }
-        var name = $('#name-input').val().trim();
         var email = $('#email-input').val().trim();
         var divContent = $(".guest-display").html();
         var newDiv = $("<div>");
@@ -242,7 +242,6 @@ $(document).ready(function () {
         newDiv.append(removeBtn);
         $(".guest-display").prepend(newDiv);
         guestsArr.push(email);
-        $('#name-input').val('');
         $('#email-input').val('');
         guestCount++;
     });
@@ -274,7 +273,6 @@ $(document).ready(function () {
             }
         }
     })
-
 
     //click handler for clear permanent button
     $(document).on('click', '.clear-permanent', function () {
