@@ -294,7 +294,9 @@ $(document).ready(function () {
                     "emails": guestsArr.join(", "),
                     "reply_to": guestsArr.join(", ") + ", " + userEmail,
                     "message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),
-                    "info": $(".res-display").html()
+                    "info": $(".res-display").html(),
+                    "planLink": "<a href=" + $("#plan-url").attr("href") + " target='_blank'>Check out the plan!</a>",
+                    "websiteLink": "<a href='https://m-tuttle.github.io/Project-1/' target='_blank'>Check out our website!<a/>"
                 });
                 $("#modal1").modal("close");
             } else {
