@@ -103,8 +103,11 @@ $(document).ready(function () {
                     rating: data.rating,
                     id: data.id,
                     lat: data.lat,
-                    long: data.long
+                    long: data.long,
+                    location: data.location
                 };
+
+                $("#location").val(data.location);
 
                 firebaseRestaurants.push(FBResNew);
                 restaurantArr.push(data.id);
@@ -377,7 +380,8 @@ $(document).ready(function () {
                         rating: responseShort.user_rating.rating_text,
                         id: responseShort.id,
                         lat: responseShort.location.latitude,
-                        long: responseShort.location.longitude
+                        long: responseShort.location.longitude,
+                        location: $("#location").val().trim()
                     };
 
                     firebaseRestaurants.push(FBRes);
