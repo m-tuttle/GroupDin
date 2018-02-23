@@ -246,7 +246,7 @@ $(document).ready(function () {
         var planID = pushed.key;
         $("#plan-url").attr("href", "https://m-tuttle.github.io/Project-1/?plan=" + planID);
         $("#plan-url").text("https://m-tuttle.github.io/Project-1/?plan=" + planID);
-        
+
     });
 
     // on click handler for the add guest button inside the modal
@@ -488,6 +488,11 @@ $(document).ready(function () {
             localStorage.setItem("uluru", JSON.stringify(uluru));
             initMap();
         }
+        var FBResIndex = firebaseRestaurants.map(function (item) {
+            return item.id;
+        }).indexOf($(this).parent().parent().parent().attr("id"));
+
+        firebaseRestaurants.splice(FBResIndex, 1);
 
         $(this).closest('.restaurant').remove();
         var description = $("#description").html();
