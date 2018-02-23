@@ -94,7 +94,7 @@ $(document).ready(function () {
                 var data = childSnapshot.val();
 
                 var FBResNew = {
-                    thumbnail: resPic,
+                    thumbnail: data.thumbnail,
                     name: data.name,
                     url: data.url,
                     address: data.address,
@@ -111,6 +111,7 @@ $(document).ready(function () {
 
                 localStorage.setItem("restaurantArr", JSON.stringify(restaurantArr));
 
+                //creates html tags for restaurant information
                 var rowDiv = $("<div>");
                 var newDiv = $("<div>");
                 var imgDiv = $("<div>");
@@ -245,6 +246,7 @@ $(document).ready(function () {
 
     // on click handler for the add guest button inside the modal
     $('#add-guest-btn').on('click', function () {
+
         //prevents page reload and validates input
         if ($("#guestForm")[0].checkValidity()) {
             event.preventDefault();
