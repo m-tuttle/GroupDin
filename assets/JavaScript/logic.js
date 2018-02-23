@@ -34,6 +34,7 @@ function initMap() {
             zoom: 15,
             center: uluru[0]
         });
+
         // sets up markers on the map with labels for each restaurant
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var labelCount = uluru.length - 1;
@@ -47,6 +48,7 @@ function initMap() {
             labelCount--;
             latlngbounds.extend(uluru[i])
         }
+
         // positions the map center and zoom based on the markers
         if (uluru.length > 1) {
             map.fitBounds(latlngbounds);
@@ -78,25 +80,30 @@ var database = firebase.database();
 
 $(document).ready(function () {
 
+    //checks firebase to get specific data based on search param in url
     database.ref().once("child_added", function (snapshot) {
+
+        //checks if search query is in firebase
         if (snapshot.hasChild(FBQuery)) {
             uluru = [];
             restaurantArr = [];
             localStorage.clear("restaurantArr");
+
+            //pulls firebase objects and populates html on the page
             snapshot.child(FBQuery).forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
 
                 var FBResNew = {
                     thumbnail: resPic,
-                    name: responseShort.name,
-                    url: responseShort.url,
-                    address: responseShort.location.address,
-                    cuisines: responseShort.cuisines,
-                    cost: responseShort.average_cost_for_two,
-                    rating: responseShort.user_rating.rating_text,
-                    id: responseShort.id,
-                    lat: responseShort.location.latitude,
-                    long: responseShort.location.longitude
+                    name: data.name,
+                    url: data.url,
+                    address: data.address,
+                    cuisines: data.cuisines,
+                    cost: data.cost,
+                    rating: data.rating,
+                    id: data.id,
+                    lat: data.lat,
+                    long: data.long
                 };
 
                 firebaseRestaurants.push(FBResNew);
