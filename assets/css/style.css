@@ -23,7 +23,7 @@ h1 {
 }
 
 body {
-    background: url(../images/foodBackground.png) no-repeat center center fixed;
+    background: url(../images/background.png) no-repeat center center fixed;
     background-size: cover;
     color: white;
     display: flex;
