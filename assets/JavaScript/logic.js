@@ -244,8 +244,8 @@ $(document).ready(function () {
             firebaseRestaurants
         );
         var planID = pushed.key;
-        $("#plan-url").attr("href", "https://m-tuttle.github.io/Project-1/?plan=" + planID);
-        $("#plan-url").text("https://m-tuttle.github.io/Project-1/?plan=" + planID);
+        $("#plan-url").attr("href", "https://m-tuttle.github.io/GroupDin/?plan=" + planID);
+        $("#plan-url").text("https://m-tuttle.github.io/GroupDin/?plan=" + planID);
 
     });
 
@@ -296,7 +296,7 @@ $(document).ready(function () {
                     "message": $("#icon_prefix2").val().replace(/\n/g, '<br />'),
                     "info": $(".res-display").html(),
                     "planLink": "<a href=" + $("#plan-url").attr("href") + " target='_blank'>Check out the plan!</a>",
-                    "websiteLink": "<a href='https://m-tuttle.github.io/Project-1/' target='_blank'>Check out our website!<a/>"
+                    "websiteLink": "<a href='https://m-tuttle.github.io/GroupDin/' target='_blank'>Check out our website!<a/>"
                 });
                 $("#modal1").modal("close");
             } else {

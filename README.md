@@ -1,7 +1,7 @@
 # GroupDīn
 
 ### Project Description
-This web application helps a user gather information on a list of restaurants and communicate a plan to a group of friends. [Check out the site!](https://m-tuttle.github.io/Project-1/) 
+This web application helps a user gather information on a list of restaurants and communicate a plan to a group of friends. [Check out the site!](https://m-tuttle.github.io/GroupDin/) 
 
 ### Website Homepage
 ![Website Homepage](assets/images/homepage.png)
